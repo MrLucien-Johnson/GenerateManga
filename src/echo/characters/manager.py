@@ -202,7 +202,80 @@ class CharacterManager:
         statuses.pop("__character__", None)
         statuses[filename] = status
         self.save_reference_statuses(slug, statuses)
+        self._sync_continuity_slot_status(slug, filename=filename, status=status)
         return statuses
+
+    def set_reference_slot_status(
+        self,
+        slug: str,
+        slot_name: str,
+        status: ReferenceStatus,
+        *,
+        approved_at: str | None = None,
+    ) -> dict[str, Any]:
+        """Update a continuity.json reference_slots entry and status.json."""
+        from datetime import datetime, timezone
+
+        cdir = self.character_dir(slug)
+        continuity_path = cdir / "continuity.json"
+        if not continuity_path.is_file():
+            raise ValidationError(f"No continuity.json for character '{slug}'.")
+        cont = json.loads(continuity_path.read_text(encoding="utf-8"))
+        slots = cont.get("reference_slots")
+        if not isinstance(slots, dict) or slot_name not in slots:
+            raise ValidationError(
+                f"Unknown reference slot '{slot_name}' for '{slug}'.",
+                hint=f"Known slots: {', '.join(slots.keys()) if isinstance(slots, dict) else '(none)'}",
+            )
+        slot = slots[slot_name]
+        if not isinstance(slot, dict):
+            raise ValidationError(f"Slot '{slot_name}' is malformed.")
+        filename = str(slot.get("filename") or f"{slug}_{slot_name}.png")
+        slot["status"] = status.value
+        slot["filename"] = filename
+        if status in (ReferenceStatus.APPROVED, ReferenceStatus.LOCKED):
+            slot["approved_at"] = approved_at or datetime.now(timezone.utc).isoformat()
+        elif status == ReferenceStatus.GENERATED:
+            slot["approved_at"] = None
+        slots[slot_name] = slot
+        cont["reference_slots"] = slots
+        continuity_path.write_text(
+            json.dumps(cont, indent=2, ensure_ascii=False) + "\n",
+            encoding="utf-8",
+        )
+        # Update status.json without re-entering continuity writers.
+        statuses = self.load_reference_statuses(slug)
+        statuses.pop("__character__", None)
+        statuses[filename] = status
+        self.save_reference_statuses(slug, statuses)
+        return cont
+
+    def _sync_continuity_slot_status(
+        self,
+        slug: str,
+        *,
+        filename: str,
+        status: ReferenceStatus,
+    ) -> None:
+        """Best-effort sync when status.json is updated by filename."""
+        continuity_path = self.character_dir(slug) / "continuity.json"
+        if not continuity_path.is_file():
+            return
+        cont = json.loads(continuity_path.read_text(encoding="utf-8"))
+        slots = cont.get("reference_slots")
+        if not isinstance(slots, dict):
+            return
+        changed = False
+        for slot in slots.values():
+            if isinstance(slot, dict) and slot.get("filename") == filename:
+                if slot.get("status") != status.value:
+                    slot["status"] = status.value
+                    changed = True
+        if changed:
+            continuity_path.write_text(
+                json.dumps(cont, indent=2, ensure_ascii=False) + "\n",
+                encoding="utf-8",
+            )
 
     def overall_reference_status(self, slug: str) -> ReferenceStatus:
         """Aggregate status: LOCKED if all locked; else worst status wins."""

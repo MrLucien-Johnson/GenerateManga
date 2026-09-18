@@ -1,0 +1,27 @@
+{
+  "id": "b3237568fefa44e3a8377793f5c3965a",
+  "page_id": "ref_kaito_front",
+  "panel_id": "front",
+  "backend": "mock",
+  "model": "mock-lineart",
+  "seed": 2433183897,
+  "positive_prompt": "Clean black-and-white manga line art for a print coloring-book style children's manga. Bold, closed outlines; flat white background areas ready for coloring; clear silhouettes; consistent character proportions; expressive but simple faces; readable panel-friendly compositions; no screentones; no gray washes; no painterly shading; high contrast ink lines only.\n\nCOLORING BOOK RULES:\n- Pure white backgrounds / open regions suitable for hand coloring\n- Closed shapes with continuous black outlines\n- No filled black areas larger than hair/eyes accents unless specified\n- No grayscale gradients, hatching-as-shade, or photographic texture\n- Leave clear negative space for speech balloons and captions (text added later)\n- Keep important details inside safe margins\n\nCharacter reference sheet slot: front\n\nCharacter: Kaito\n\nface_shape: Soft oval with a gently pointed chin; youthful cheeks that can flush; not round-chibi and not sharp-adult; eye_shape: Large, expressive almond eyes with clear upper lids; irises readable in line art; strong catchlights when hopeful or amazed; hairstyle: Messy spiky hair with uneven clumps; several forward spikes over the forehead; sides a bit shorter; looks like he forgot a comb but on purpose; hair_silhouette: Irregular spiky crown; highest spikes slightly off-center; readable dark outline even when hood is up (hood rarely fully covers spikes); approximate_height: About 160–165 cm (average early-teen height); reads slightly lanky next to peers; outfit: Hooded jacket over a plain casual shirt or light undershirt, practical trousers, sneakers; jacket: Casual zip-up hooded jacket\n\nClean black-and-white line art reference for slot 'front'.\n\nSingle character focus, consistent proportions, no background clutter.\n\nWatermark / label: NON-PRODUCTION TEST",
+  "negative_prompt": "photorealistic, color fill, watermark spam, extra limbs",
+  "width": 1024,
+  "height": 1024,
+  "status": "GENERATED",
+  "output_path": "characters/kaito/references/kaito_front.png",
+  "approved_path": null,
+  "reference_assets": [],
+  "settings": {
+    "kind": "character_reference",
+    "slot": "front",
+    "character": "kaito",
+    "non_production": true,
+    "label": "NON-PRODUCTION TEST"
+  },
+  "error": null,
+  "created_at": "2026-09-18T10:53:58.112332Z",
+  "updated_at": "2026-09-18T10:53:58.112368Z",
+  "parent_id": null
+}

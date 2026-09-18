@@ -1,6 +1,6 @@
 {
   "default_backend": "mock",
-  "use_mock_backend": false,
+  "use_mock_backend": true,
   "width": 2550,
   "height": 3300,
   "seed": null,
@@ -10,5 +10,5 @@
   "local_model_path": null,
   "local_model_id": null,
   "huggingface_model": "black-forest-labs/FLUX.1-schnell",
-  "notes": "Set use_mock_backend true or ECHO_MOCK_GENERATION=1 for Pillow placeholders. Never auto-download large models."
+  "notes": "Default backend is mock (Pillow placeholders) for zero-cost local smoke tests. Set use_mock_backend false and default_backend to local|huggingface|colab when real models are configured. Never auto-download large models without informing the user. ECHO_MOCK_GENERATION=1 forces mock."
 }

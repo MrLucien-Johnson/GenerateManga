@@ -50,6 +50,9 @@ logs/*.log.*
 reports/*.json
 !reports/.gitkeep
 !reports/model-licensing.json
+!reports/pilot-report.md
+!reports/kaito-reference-review.md
+!reports/*.md
 
 # Large generation outputs — keep metadata dirs, ignore heavy binaries by default
 generations/**/*.png

@@ -460,14 +460,26 @@ def _apply_story_edit(
 
 
 def render_continuity() -> None:
+    from datetime import datetime, timezone
+
+    from echo.characters.manager import CharacterManager
+    from echo.continuity.gates import GateName, set_gate
+    from echo.core.schemas import ReferenceStatus
+
     project = _project()
     st.header("Continuity / References — Kaito")
+    st.warning(
+        "KAITO CHARACTER DESIGN APPROVAL GATE — You must approve references yourself. "
+        "Do not open the production gate until the design is locked."
+    )
     cont = load_character_continuity("kaito", project=project)
     bible = load_character_bible("kaito", project=project)
+    mgr = CharacterManager(root=project)
     st.write(f"**Name:** {bible.get('name', 'Kaito')}")
     st.write(f"**Gate in continuity:** {cont.get('production_gate')}")
     state = load_state(root=project)
     st.write(f"**State KAITO_REFERENCE_APPROVED:** `{state.gates.kaito_reference_approved}`")
+    st.write(f"**Aggregate reference status:** `{mgr.overall_reference_status('kaito').value}`")
 
     slots = cont.get("reference_slots") or {}
     rows = []
@@ -478,6 +490,7 @@ def render_continuity() -> None:
                 "filename": slot.get("filename"),
                 "status": slot.get("status"),
                 "path": slot.get("path"),
+                "seed_record": slot.get("generation_record_id"),
             }
         )
     st.dataframe(rows, use_container_width=True)
@@ -485,12 +498,63 @@ def render_continuity() -> None:
     ref_dir = project / "characters" / "kaito" / "references"
     images = sorted(ref_dir.glob("*.png"))
     if images:
-        cols = st.columns(3)
-        for i, img in enumerate(images):
-            with cols[i % 3]:
-                st.image(str(img), caption=img.name, use_container_width=True)
+        for name, slot in slots.items():
+            filename = slot.get("filename")
+            img = ref_dir / filename if filename else None
+            if not img or not img.is_file():
+                continue
+            st.subheader(f"Slot: {name} — {slot.get('status')}")
+            st.image(str(img), caption=filename, use_container_width=True)
+            c1, c2, c3 = st.columns(3)
+            if c1.button(f"Approve {name}", key=f"approve_slot_{name}"):
+                mgr.set_reference_slot_status("kaito", name, ReferenceStatus.APPROVED)
+                st.success(f"Approved slot '{name}' (still does NOT open the production gate).")
+                st.rerun()
+            if c2.button(f"Reject {name}", key=f"reject_slot_{name}"):
+                mgr.set_reference_slot_status("kaito", name, ReferenceStatus.GENERATED)
+                st.warning(f"Slot '{name}' set back to GENERATED for regeneration.")
+                st.rerun()
+            if c3.button(f"Lock {name}", key=f"lock_slot_{name}"):
+                mgr.set_reference_slot_status("kaito", name, ReferenceStatus.LOCKED)
+                st.success(f"Locked slot '{name}'.")
+                st.rerun()
     else:
         st.info("No reference PNGs on disk yet. Run scripts/generate_reference.py kaito")
+
+    st.markdown("---")
+    st.subheader("Open production gate (human only)")
+    overall = mgr.overall_reference_status("kaito")
+    all_ready = overall in (ReferenceStatus.APPROVED, ReferenceStatus.LOCKED)
+    st.caption(
+        "Requires every reference slot APPROVED or LOCKED. "
+        "This does not select a design for you — it records your decision."
+    )
+    confirm = st.checkbox(
+        "I reviewed all Kaito references and consciously approve this character design for production.",
+        value=False,
+        key="kaito_gate_confirm",
+    )
+    if st.button(
+        "Set KAITO_REFERENCE_APPROVED = true",
+        type="primary",
+        disabled=not (all_ready and confirm),
+    ):
+        set_gate(
+            GateName.KAITO_REFERENCE_APPROVED,
+            True,
+            root=project,
+            note=f"Human approved at {datetime.now(timezone.utc).isoformat()}",
+        )
+        cont = load_character_continuity("kaito", project=project)
+        cont.setdefault("production_gate", {})["KAITO_REFERENCE_APPROVED"] = True
+        (project / "characters" / "kaito" / "continuity.json").write_text(
+            json.dumps(cont, indent=2, ensure_ascii=False) + "\n",
+            encoding="utf-8",
+        )
+        st.success("KAITO_REFERENCE_APPROVED is now true. Pilot generation (pages 1–5) is permitted.")
+        st.rerun()
+    if not all_ready:
+        st.info(f"Cannot open gate yet — aggregate status is {overall.value}.")
 
 
 def render_preflight() -> None:

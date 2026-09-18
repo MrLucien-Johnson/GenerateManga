@@ -1,0 +1,27 @@
+{
+  "id": "7889fd93846f4c51ac77a70818401aef",
+  "page_id": "ref_kaito_three-quarter",
+  "panel_id": "three-quarter",
+  "backend": "mock",
+  "model": "mock-lineart",
+  "seed": 1642863531,
+  "positive_prompt": "Clean black-and-white manga line art for a print coloring-book style children's manga. Bold, closed outlines; flat white background areas ready for coloring; clear silhouettes; consistent character proportions; expressive but simple faces; readable panel-friendly compositions; no screentones; no gray washes; no painterly shading; high contrast ink lines only.\n\nCOLORING BOOK RULES:\n- Pure white backgrounds / open regions suitable for hand coloring\n- Closed shapes with continuous black outlines\n- No filled black areas larger than hair/eyes accents unless specified\n- No grayscale gradients, hatching-as-shade, or photographic texture\n- Leave clear negative space for speech balloons and captions (text added later)\n- Keep important details inside safe margins\n\nCharacter reference sheet slot: three-quarter\n\nCharacter: Kaito\n\nface_shape: Soft oval with a gently pointed chin; youthful cheeks that can flush; not round-chibi and not sharp-adult; eye_shape: Large, expressive almond eyes with clear upper lids; irises readable in line art; strong catchlights when hopeful or amazed; hairstyle: Messy spiky hair with uneven clumps; several forward spikes over the forehead; sides a bit shorter; looks like he forgot a comb but on purpose; hair_silhouette: Irregular spiky crown; highest spikes slightly off-center; readable dark outline even when hood is up (hood rarely fully covers spikes); approximate_height: About 160–165 cm (average early-teen height); reads slightly lanky next to peers; outfit: Hooded jacket over a plain casual shirt or light undershirt, practical trousers, sneakers; jacket: Casual zip-up hooded jacket\n\nClean black-and-white line art reference for slot 'three-quarter'.\n\nSingle character focus, consistent proportions, no background clutter.\n\nWatermark / label: NON-PRODUCTION TEST",
+  "negative_prompt": "photorealistic, color fill, watermark spam, extra limbs",
+  "width": 1024,
+  "height": 1024,
+  "status": "GENERATED",
+  "output_path": "characters/kaito/references/kaito_three_quarter.png",
+  "approved_path": null,
+  "reference_assets": [],
+  "settings": {
+    "kind": "character_reference",
+    "slot": "three-quarter",
+    "character": "kaito",
+    "non_production": true,
+    "label": "NON-PRODUCTION TEST"
+  },
+  "error": null,
+  "created_at": "2026-09-18T10:53:58.137556Z",
+  "updated_at": "2026-09-18T10:53:58.137566Z",
+  "parent_id": null
+}

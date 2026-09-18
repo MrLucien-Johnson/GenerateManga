@@ -80,13 +80,23 @@ class MockGenerationBackend(GenerationBackend):
             outline="black",
         )
 
+        settings = settings or {}
         label = "NON-PRODUCTION TEST"
+        slot = str(settings.get("slot") or settings.get("kind") or "")
+        character = str(settings.get("character") or "")
         try:
             font = ImageFont.load_default()
         except Exception:
             font = None
         draw.text((margin + 4, margin + 4), label, fill="black", font=font)
         draw.text((margin + 4, margin + 20), f"seed={resolved_seed}", fill="black", font=font)
+        if character or slot:
+            draw.text(
+                (margin + 4, margin + 36),
+                f"{character} / {slot}".strip(" /"),
+                fill="black",
+                font=font,
+            )
 
         # Tiny mark from negative prompt length so tests can assert influence without baking text.
         if negative_prompt:

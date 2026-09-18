@@ -26,19 +26,26 @@ def test_generation_record_defaults() -> None:
     record = GenerationRecord(page_id="p1")
     assert record.backend == "mock"
     assert record.status == ArtStatus.GENERATED
+    assert record.source_type.value == "UNKNOWN"
+    assert record.production_eligible is False
+    assert record.is_mock() is True  # backend == mock
     assert record.id
     dumped = record.to_json_dict()
     assert dumped["page_id"] == "p1"
     assert "created_at" in dumped
+    assert "source_type" in dumped
 
 
 def test_production_gates_is_open() -> None:
     gates = ProductionGates()
     assert gates.is_open("KAITO_REFERENCE_APPROVED") is False
+    assert gates.is_open("KAITO_MASTER_DESIGN_SELECTED") is False
     assert gates.is_open("PILOT_APPROVED") is False
     assert gates.is_open("PDF_READY") is False
     gates.kaito_reference_approved = True
     assert gates.is_open("kaito_reference_approved") is True
+    gates.kaito_master_design_selected = True
+    assert gates.is_open("KAITO_MASTER_DESIGN_SELECTED") is True
 
 
 def test_production_gates_unknown_raises() -> None:

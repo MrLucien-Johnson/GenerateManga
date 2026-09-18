@@ -20,6 +20,31 @@
       "used_for": [],
       "status": "OWNER_MUST_REVIEW",
       "notes": "Replace this placeholder with real model provenance before production export."
+    },
+    {
+      "model": "cursor-generate-image",
+      "backend": "studio_image",
+      "source": "Cursor GenerateImage tool (design exploration)",
+      "revision": null,
+      "date_accessed": "2026-09-18",
+      "license": "Requires owner review \u2014 not auto-cleared for commercial KDP",
+      "commercial_use_notes": "Owner must verify rights before publication. Used only for Phase 12 design candidates A\u2013D.",
+      "used_for": [
+        "kaito-design-A",
+        "kaito-design-B",
+        "kaito-design-C",
+        "kaito-design-D"
+      ]
+    },
+    {
+      "model": "pollinations-flux",
+      "backend": "free_remote",
+      "source": "https://pollinations.ai/",
+      "revision": null,
+      "date_accessed": "2026-09-18",
+      "license": "Third-party free service \u2014 owner must review ToS",
+      "commercial_use_notes": "Early Phase 12 probes discarded (bible mismatch). Backend retained for optional zero-cost exploration.",
+      "used_for": []
     }
   ]
 }

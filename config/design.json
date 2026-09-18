@@ -1,0 +1,16 @@
+{
+  "master_design_workflow": true,
+  "character_id": "kaito",
+  "candidates_dir": "characters/kaito/design-candidates",
+  "require_real_backend": true,
+  "refuse_mock_for_selection": true,
+  "auto_select": false,
+  "candidate_count": 4,
+  "candidate_width": 1024,
+  "candidate_height": 1024,
+  "status_default": "AWAITING_DESIGN_SELECTION",
+  "gates": {
+    "KAITO_MASTER_DESIGN_SELECTED": false
+  },
+  "notes": "Human must SELECT AS KAITO after reviewing candidates A–D. Scripts and UI must never auto-select a winner."
+}

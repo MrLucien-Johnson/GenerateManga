@@ -1,6 +1,8 @@
 """Approval state machine: GENERATED -> APPROVED / REJECTED.
 
 Never silently overwrites an already-approved asset.
+Mock / non-production records cannot be approved into production paths
+unless ``force_non_production=True`` (tests only).
 """
 
 from __future__ import annotations
@@ -10,7 +12,7 @@ from pathlib import Path
 
 from echo.core.errors import ValidationError
 from echo.core.paths import approved_dir, project_root, rejected_dir
-from echo.core.schemas import ArtStatus, GenerationRecord
+from echo.core.schemas import ArtStatus, GenerationRecord, SourceType
 from echo.generation.metadata import load_record, save_record
 
 
@@ -26,6 +28,7 @@ class ApprovalWorkflow:
         *,
         force: bool = False,
         dest_name: str | None = None,
+        force_non_production: bool = False,
     ) -> GenerationRecord:
         record = load_record(record_id, root=self.root)
         if record.status == ArtStatus.APPROVED and not force:
@@ -38,6 +41,20 @@ class ApprovalWorkflow:
                 f"Record '{record_id}' is LOCKED and cannot be re-approved.",
                 hint="Unlock the asset first if a deliberate replacement is required.",
             )
+
+        if not force_non_production:
+            if record.is_mock() or record.source_type == SourceType.MOCK:
+                raise ValidationError(
+                    f"Record '{record_id}' is MOCK and cannot be approved for production.",
+                    hint="Regenerate with a REAL backend, or pass force_non_production=True for tests only.",
+                )
+            if not record.production_eligible:
+                raise ValidationError(
+                    f"Record '{record_id}' is not production_eligible.",
+                    hint="Mark production_eligible=True only for licensed REAL assets, "
+                    "or pass force_non_production=True for tests only.",
+                )
+
         if not record.output_path:
             raise ValidationError(f"Record '{record_id}' has no output_path to approve.")
         src = Path(record.output_path)

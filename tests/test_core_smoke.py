@@ -57,15 +57,18 @@ def test_mock_backend_produces_valid_png(tmp_project: Path) -> None:
 
 
 def test_approval_copies_file(tmp_project: Path) -> None:
-    backend = MockGenerationBackend(root=tmp_project)
+    from echo.core.schemas import SourceType
+
     out = tmp_project / "generations" / "art.png"
-    result = backend.generate(prompt="approve me", width=64, height=64, seed=7, output_path=out)
+    Image.new("RGB", (64, 64), "white").save(out, format="PNG")
     record = create_record(
         page_id="p1",
-        backend="mock",
-        seed=result.seed,
-        output_path=result.output_path,
+        backend="test",
+        seed=7,
+        output_path=out,
         status=ArtStatus.GENERATED,
+        source_type=SourceType.REAL,
+        production_eligible=True,
         root=tmp_project,
     )
     approved = ApprovalWorkflow(root=tmp_project).approve(record.id)

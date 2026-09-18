@@ -84,12 +84,14 @@ def main() -> None:
         state = ProjectState(
             gates=ProductionGates(
                 kaito_reference_approved=kaito_gate,
+                kaito_master_design_selected=False,
                 pilot_approved=pilot_gate,
                 pdf_ready=False,
                 notes={
                     "KAITO_REFERENCE_APPROVED": (
                         "Hydrated from continuity.json" if kaito_gate else "Initial — false"
                     ),
+                    "KAITO_MASTER_DESIGN_SELECTED": "Initial — false",
                     "PILOT_APPROVED": (
                         "Hydrated from production_gates.json" if pilot_gate else "Initial — false"
                     ),
@@ -124,6 +126,7 @@ def main() -> None:
             json.dumps(
                 {
                     "KAITO_REFERENCE_APPROVED": False,
+                    "KAITO_MASTER_DESIGN_SELECTED": False,
                     "PILOT_APPROVED": False,
                     "PDF_READY": False,
                 },

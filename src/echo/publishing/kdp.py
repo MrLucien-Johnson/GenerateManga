@@ -41,6 +41,9 @@ def build_kdp_pdf(
 
     if require_gates:
         from echo.continuity.gates import evaluate_pdf_ready
+        from echo.core.schemas import ArtStatus, SourceType
+        from echo.generation.metadata import load_record
+        from echo.core.paths import generations_dir
 
         report = evaluate_pdf_ready(root=root)
         if not report.get("pdf_ready"):
@@ -49,10 +52,29 @@ def build_kdp_pdf(
                 detail=(
                     f"approved={report.get('approved_count')}, "
                     f"kaito={report.get('kaito_reference_approved')}, "
+                    f"master={report.get('kaito_master_design_selected')}, "
                     f"pilot={report.get('pilot_approved')}, "
+                    f"prod_ok={report.get('production_assets_ok')}, "
                     f"missing={report.get('missing_pages')}"
                 ),
             )
+
+        # Extra hard ban: refuse MOCK approved assets even if gates look open.
+        gen_root = generations_dir(root)
+        if gen_root.is_dir():
+            for record_json in gen_root.glob("*/record.json"):
+                try:
+                    record = load_record(record_json.parent.name, root=root)
+                except Exception:
+                    continue
+                if record.status != ArtStatus.APPROVED:
+                    continue
+                if record.is_mock() or record.source_type == SourceType.MOCK:
+                    raise GateBlocked(
+                        "PDF_READY",
+                        detail=f"Approved record {record.id} is MOCK — cannot build production PDF.",
+                        hint="Remove mock assets from approved/ and regenerate with REAL backends.",
+                    )
 
     trim_w = _inch(kdp.get("trim_width_in", 8.5))
     trim_h = _inch(kdp.get("trim_height_in", 11.0))

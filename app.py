@@ -112,18 +112,23 @@ def render_dashboard() -> None:
             st.write(f"{name}: not started")
 
     st.markdown("### Gates & backend")
-    g1, g2, g3, g4 = st.columns(4)
+    g1, g2, g3, g4, g5 = st.columns(5)
     g1.write(f"KAITO_REFERENCE_APPROVED: `{state.gates.kaito_reference_approved}`")
-    g2.write(f"PILOT_APPROVED: `{state.gates.pilot_approved}`")
-    g3.write(f"PDF_READY: `{state.gates.pdf_ready}`")
+    g2.write(
+        f"KAITO_MASTER_DESIGN_SELECTED: `{getattr(state.gates, 'kaito_master_design_selected', False)}`"
+    )
+    g3.write(f"PILOT_APPROVED: `{state.gates.pilot_approved}`")
+    g4.write(f"PDF_READY: `{state.gates.pdf_ready}`")
     try:
         backend, name, is_mock = resolve_generation_backend(project=project)
         ok, reason = backend.available()
-        g4.write(f"Backend: `{name}` available={ok} mock_cfg={mock_generation_enabled(project)}")
+        g5.write(f"Backend: `{name}` available={ok} mock_cfg={mock_generation_enabled(project)}")
         st.caption(reason)
     except SystemExit as exc:
-        g4.write("Backend: unavailable")
+        g5.write("Backend: unavailable")
         st.caption(str(exc))
+    except Exception as exc:  # noqa: BLE001
+        g5.write(f"Backend: error ({exc})")
 
 
 def render_review() -> None:
@@ -471,11 +476,32 @@ def _apply_story_edit(
     save_story_plan(plan, project=project)
 
 
+def _kaito_refs_are_mock(project: Path) -> tuple[bool, list[str]]:
+    """Return (has_mock, details) for Kaito reference generation records."""
+    from echo.generation.metadata import load_record
+
+    cont = load_character_continuity("kaito", project=project)
+    hits: list[str] = []
+    for name, slot in (cont.get("reference_slots") or {}).items():
+        if not isinstance(slot, dict):
+            continue
+        rid = slot.get("generation_record_id")
+        if not rid:
+            continue
+        try:
+            record = load_record(str(rid), root=project)
+        except Exception:
+            continue
+        if record.is_mock():
+            hits.append(f"{name}:{record.backend}")
+    return bool(hits), hits
+
+
 def render_continuity() -> None:
     from datetime import datetime, timezone
 
     from echo.characters.manager import CharacterManager
-    from echo.continuity.gates import GateName, set_gate
+    from echo.continuity.gates import GateName, assert_no_mock_for_kaito_gate, set_gate
     from echo.core.schemas import ReferenceStatus
 
     project = _project()
@@ -487,10 +513,21 @@ def render_continuity() -> None:
     cont = load_character_continuity("kaito", project=project)
     bible = load_character_bible("kaito", project=project)
     mgr = CharacterManager(root=project)
+    has_mock, mock_hits = _kaito_refs_are_mock(project)
+    if has_mock:
+        st.error(
+            "Mock / non-production references cannot open the production gate. "
+            f"Affected slots: {', '.join(mock_hits)}. Regenerate with a REAL backend."
+        )
     st.write(f"**Name:** {bible.get('name', 'Kaito')}")
     st.write(f"**Gate in continuity:** {cont.get('production_gate')}")
+    st.write(f"**Master design:** {cont.get('master_design')}")
     state = load_state(root=project)
     st.write(f"**State KAITO_REFERENCE_APPROVED:** `{state.gates.kaito_reference_approved}`")
+    st.write(
+        f"**State KAITO_MASTER_DESIGN_SELECTED:** "
+        f"`{getattr(state.gates, 'kaito_master_design_selected', False)}`"
+    )
     st.write(f"**Aggregate reference status:** `{mgr.overall_reference_status('kaito').value}`")
 
     slots = cont.get("reference_slots") or {}
@@ -539,6 +576,7 @@ def render_continuity() -> None:
     all_ready = overall in (ReferenceStatus.APPROVED, ReferenceStatus.LOCKED)
     st.caption(
         "Requires every reference slot APPROVED or LOCKED. "
+        "Mock references cannot open this gate. "
         "This does not select a design for you — it records your decision."
     )
     confirm = st.checkbox(
@@ -546,27 +584,109 @@ def render_continuity() -> None:
         value=False,
         key="kaito_gate_confirm",
     )
+    open_disabled = not (all_ready and confirm) or has_mock
     if st.button(
         "Set KAITO_REFERENCE_APPROVED = true",
         type="primary",
-        disabled=not (all_ready and confirm),
+        disabled=open_disabled,
     ):
-        set_gate(
-            GateName.KAITO_REFERENCE_APPROVED,
-            True,
-            root=project,
-            note=f"Human approved at {datetime.now(timezone.utc).isoformat()}",
-        )
-        cont = load_character_continuity("kaito", project=project)
-        cont.setdefault("production_gate", {})["KAITO_REFERENCE_APPROVED"] = True
-        (project / "characters" / "kaito" / "continuity.json").write_text(
-            json.dumps(cont, indent=2, ensure_ascii=False) + "\n",
-            encoding="utf-8",
-        )
-        st.success("KAITO_REFERENCE_APPROVED is now true. Pilot generation (pages 1–5) is permitted.")
-        st.rerun()
+        try:
+            assert_no_mock_for_kaito_gate(root=project)
+            set_gate(
+                GateName.KAITO_REFERENCE_APPROVED,
+                True,
+                root=project,
+                note=f"Human approved at {datetime.now(timezone.utc).isoformat()}",
+            )
+            cont = load_character_continuity("kaito", project=project)
+            cont.setdefault("production_gate", {})["KAITO_REFERENCE_APPROVED"] = True
+            (project / "characters" / "kaito" / "continuity.json").write_text(
+                json.dumps(cont, indent=2, ensure_ascii=False) + "\n",
+                encoding="utf-8",
+            )
+            st.success(
+                "KAITO_REFERENCE_APPROVED is now true. Pilot generation (pages 1–5) is permitted."
+            )
+            st.rerun()
+        except EchoError as exc:
+            st.error(exc.user_message)
+    if has_mock:
+        st.warning("Open-gate is disabled while mock references are present.")
     if not all_ready:
         st.info(f"Cannot open gate yet — aggregate status is {overall.value}.")
+
+
+def render_kaito_master_design() -> None:
+    from echo.characters.design_candidates import (
+        list_candidates,
+        master_design_selected,
+        reject_candidate,
+        select_master,
+    )
+    from echo.core.errors import ValidationError
+
+    project = _project()
+    st.header("Kaito Master Design")
+    selected = master_design_selected(root=project)
+    state = load_state(root=project)
+    st.write(
+        f"**KAITO_MASTER_DESIGN_SELECTED:** "
+        f"`{getattr(state.gates, 'kaito_master_design_selected', False)}` "
+        f"(continuity={selected})"
+    )
+    st.info(
+        "Generate candidates with `scripts/generate_kaito_designs.py` (REAL backend only) "
+        "or import via `scripts/import_colab_kaito_designs.py`. "
+        "This page never auto-selects a winner."
+    )
+    st.caption("REGENERATE: re-run generate_kaito_designs.py to produce a new set; prior candidates remain until rejected.")
+
+    candidates = list_candidates(root=project, character_id="kaito")
+    if not candidates:
+        st.warning("No design candidates yet. Status remains AWAITING_DESIGN_SELECTION / gate closed.")
+        return
+
+    for cand in candidates:
+        st.markdown("---")
+        st.subheader(f"Candidate {cand.label or cand.id[:8]} — {cand.status.value}")
+        cols = st.columns([2, 2])
+        with cols[0]:
+            img = _resolve_image_path(cand.image_path)
+            if img:
+                st.image(str(img), use_column_width="always")
+            else:
+                st.write("(no image on disk)")
+        with cols[1]:
+            st.write(f"model: `{cand.model}`")
+            st.write(f"seed: `{cand.seed}`")
+            st.write(f"backend: `{cand.backend}`")
+            st.write(f"source_type: `{cand.source_type.value}`")
+            st.write(f"production_eligible: `{cand.production_eligible}`")
+            confirm = st.checkbox(
+                f"I confirm selecting candidate {cand.label} as KAITO master design",
+                key=f"confirm_select_{cand.id}",
+                value=False,
+            )
+            c1, c2 = st.columns(2)
+            if c1.button(
+                "SELECT AS KAITO",
+                key=f"select_{cand.id}",
+                type="primary",
+                disabled=not confirm or cand.is_mock() or not cand.production_eligible,
+            ):
+                try:
+                    select_master(cand.id, root=project)
+                    st.success(f"Selected {cand.label} as Kaito master design.")
+                    st.rerun()
+                except (ValidationError, EchoError) as exc:
+                    st.error(getattr(exc, "user_message", str(exc)))
+            if c2.button("REJECT", key=f"reject_cand_{cand.id}"):
+                try:
+                    reject_candidate(cand.id, root=project, reason="Rejected in Streamlit")
+                    st.warning(f"Rejected candidate {cand.label}.")
+                    st.rerun()
+                except (ValidationError, EchoError) as exc:
+                    st.error(getattr(exc, "user_message", str(exc)))
 
 
 def render_preflight() -> None:
@@ -589,7 +709,14 @@ def main() -> None:
     st.sidebar.title("Echo Studio")
     page = st.sidebar.radio(
         "Navigate",
-        ["Dashboard", "Review", "Story Editor", "Continuity / References", "Preflight"],
+        [
+            "Dashboard",
+            "Review",
+            "Story Editor",
+            "Continuity / References",
+            "Kaito Master Design",
+            "Preflight",
+        ],
     )
     if page == "Dashboard":
         render_dashboard()
@@ -599,6 +726,8 @@ def main() -> None:
         render_story_editor()
     elif page == "Continuity / References":
         render_continuity()
+    elif page == "Kaito Master Design":
+        render_kaito_master_design()
     else:
         render_preflight()
 

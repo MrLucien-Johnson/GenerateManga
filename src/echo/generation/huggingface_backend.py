@@ -122,5 +122,9 @@ class HuggingFaceBackend(GenerationBackend):
             seed=seed,
             backend=self.name,
             model=self.model,
-            metadata={"settings": settings or {}},
+            metadata={
+                "settings": settings or {},
+                "source_type": "REAL",
+                "production_eligible": False,
+            },
         )

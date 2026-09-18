@@ -1,5 +1,12 @@
-# Mock Kaito gate opened for pipeline testing
+# Mock Kaito gate opened for pipeline testing — SUPERSEDED
 
-Human intentionally approved mock geometric placeholders and set `KAITO_REFERENCE_APPROVED=true` for workflow testing only.
+> **SUPERSEDED (Phase 12):** Mock references and mock pilot pages must not open production gates.
 
-These are NOT publishable character designs. Regenerate with a real backend before production.
+The earlier intentional mock approval of geometric placeholders and
+`KAITO_REFERENCE_APPROVED=true` / `PILOT_APPROVED=true` has been **revoked**.
+
+- Mock pilot pages were moved to `rejected/mock-pilot-pages/`
+- Kaito reference slots were demoted to `GENERATED`
+- Production gates reset to closed; master design not selected
+
+Regenerate with a REAL backend and select a master design before production.

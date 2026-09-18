@@ -10,6 +10,7 @@ from PIL import Image
 
 from echo.continuity.gates import GateName, set_gate
 from echo.core.errors import GateBlocked, ValidationError
+from echo.core.state import load_state, save_state
 from echo.publishing.kdp import build_kdp_pdf
 from echo.story.physical_pages import PhysicalPageMapper
 
@@ -18,6 +19,14 @@ def _write_approved(tmp_project: Path, name: str, size: tuple[int, int] = (128, 
     path = tmp_project / "approved" / name
     Image.new("RGB", size, "white").save(path, format="PNG")
     return path
+
+
+def _open_production_gates(tmp_project: Path) -> None:
+    set_gate(GateName.KAITO_REFERENCE_APPROVED, True, root=tmp_project)
+    set_gate(GateName.PILOT_APPROVED, True, root=tmp_project)
+    state = load_state(root=tmp_project)
+    state.gates.kaito_master_design_selected = True
+    save_state(state, root=tmp_project)
 
 
 def _pdf_mediabox_inches(pdf_path: Path) -> tuple[float, float]:
@@ -37,8 +46,7 @@ def _pdf_page_count(pdf_path: Path) -> int:
 def test_pdf_page_size_8_5_x_11_with_bleed(tmp_project: Path) -> None:
     _write_approved(tmp_project, "p1.png")
     _write_approved(tmp_project, "p2.png")
-    set_gate(GateName.KAITO_REFERENCE_APPROVED, True, root=tmp_project)
-    set_gate(GateName.PILOT_APPROVED, True, root=tmp_project)
+    _open_production_gates(tmp_project)
 
     out = build_kdp_pdf(root=tmp_project, require_gates=True)
     assert out.is_file()

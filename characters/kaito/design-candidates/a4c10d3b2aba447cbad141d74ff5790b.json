@@ -1,0 +1,21 @@
+{
+  "id": "a4c10d3b2aba447cbad141d74ff5790b",
+  "label": "A",
+  "character_id": "kaito",
+  "status": "AWAITING_DESIGN_SELECTION",
+  "backend": "studio_image",
+  "model": "cursor-generate-image",
+  "seed": 12001,
+  "source_type": "REAL",
+  "production_eligible": true,
+  "model_revision": null,
+  "license_notes": "Generated via Cursor studio image generation for design exploration when local GPU/HF were unavailable. Owner must review licensing/commercial-use before KDP publication. Not automatically commercially cleared.",
+  "positive_prompt": "Clean black-and-white manga line art for a print coloring-book style children's manga. Bold, closed outlines; flat white background areas ready for coloring; clear silhouettes; consistent character proportions; expressive but simple faces; readable panel-friendly compositions; no screentones; no gray washes; no painterly shading; high contrast ink lines only.\n\nCOLORING BOOK RULES:\n- Pure white backgrounds / open regions suitable for hand coloring\n- Closed shapes with continuous black outlines\n- No filled black areas larger than hair/eyes accents unless specified\n- No grayscale gradients, hatching-as-shade, or photographic texture\n- Leave clear negative space for speech balloons and captions (text added later)\n- Keep important details inside safe margins\n\nKaito master design exploration A: confident curious; full-body + face; hood down. 14-year-old boy, messy spiky hair, hooded jacket, trousers, sneakers, manga B&W line art coloring-book style, white background.",
+  "negative_prompt": "photorealistic, 3d render, cgi, blurry, lowres, watermark, signature, logo, text, letters, words, speech bubble text, caption text, speech balloons with writing, color, colored, watercolor, airbrush, soft shading, gradient, grayscale wash, screentone, moire, noise, jpeg artifacts, extra limbs, deformed hands, nsfw, gore, horror, creepy uncanny faces\n",
+  "width": 864,
+  "height": 1152,
+  "image_path": "characters/kaito/design-candidates/kaito-design-A.png",
+  "generation_record_id": "147dbb936cce4686966086c4b8c8cc31",
+  "created_at": "2026-09-18T15:36:12.250385Z",
+  "notes": "Design exploration A. AWAITING human selection."
+}

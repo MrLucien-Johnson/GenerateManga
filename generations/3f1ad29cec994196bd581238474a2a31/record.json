@@ -1,0 +1,28 @@
+{
+  "id": "3f1ad29cec994196bd581238474a2a31",
+  "page_id": "kaito_design_b",
+  "panel_id": null,
+  "backend": "free_remote",
+  "model": "pollinations-flux",
+  "seed": 12098,
+  "positive_prompt": "Clean black-and-white manga line art for a print coloring-book style children's manga. Bold, closed outlines; flat white background areas ready for coloring; clear silhouettes; consistent character proportions; expressive but simple faces; readable panel-friendly compositions; no screentones; no gray washes; no painterly shading; high contrast ink lines only.\n\nCOLORING BOOK RULES:\n- Pure white backgrounds / open regions suitable for hand coloring\n- Closed shapes with continuous black outlines\n- No filled black areas larger than hair/eyes accents unless specified\n- No grayscale gradients, hatching-as-shade, or photographic texture\n- Leave clear negative space for speech balloons and captions (text added later)\n- Keep important details inside safe margins\n\nProfessional Japanese manga protagonist CHARACTER DESIGN SHEET. Black and white clean ink line art only. Pure white background. No grayscale, no gradients, no color, no screentones, no painted shading. Coloring-book compatible. Single character: Kaito.\n\nDesign exploration B: softer thoughtful expression, clear face close-up inset plus full-body, slightly different spiky hair clumps but same silhouette family, hood down, standing relaxed.\n\nInclude readable full-body figure plus a larger face/head detail in the same sheet composition without written labels or text of any kind.\n\nName: Kaito\n\nAge: 14 — unmistakably a 14-year-old boy, NOT an adult.\n\nface_shape: Soft oval with a gently pointed chin; youthful cheeks that can flush; not round-chibi and not sharp-adult\n\neye_shape: Large, expressive almond eyes with clear upper lids; irises readable in line art; strong catchlights when hopeful or amazed\n\nhairstyle: Messy spiky hair with uneven clumps; several forward spikes over the forehead; sides a bit shorter; looks like he forgot a comb but on purpose\n\nhair_silhouette: Irregular spiky crown; highest spikes slightly off-center; readable dark outline even when hood is up (hood rarely fully covers spikes)\n\napproximate_height: About 160–165 cm (average early-teen height); reads slightly lanky next to peers\n\nbody_proportions: {'build': 'Slim teenage build; narrow shoulders; longish limbs without adult muscle mass', 'torso': 'Lean torso; jacket often slightly oversized for cozy silhouette', 'limbs': 'Slim arms and legs; knees and elbows subtly angular, not soft-chibi', 'hands': 'Youthful hands with slightly long fingers from constant drawing', 'notes': 'Keep proportions readable for coloring books: clear silhouette, no extreme stylization shifts between pages'}\n\noutfit: Hooded jacket over a plain casual shirt or light undershirt, practical trousers, sneakers\n\njacket: {\"type\": \"Casual zip-up hooded jacket\", \"fit\": \"Slightly loose on slim frame\", \"closure\": \"Center front zipper (show zipper pull in detail shots)\", \"pockets\": \"Two lower side pockets; optional small chest pocket consistent when shown\", \"hem\": \"Straight hem around hip line\", \"cuffs\": \"Simple ribbed or banded cuffs\", \"visual_priority\": \"Jacket is the primary costume identifier across pages\"}\n\npersonality cues in posing: {'core': 'Quiet, observant, kind, imaginative, conflict-avoidant until responsibility forces action', 'social': 'Loyal to Ren; polite to adults; slow to trust crowds', 'creative': 'Sees stories in margins; fears judgment; learns finishing is an act of courage', 'values': 'Friendship, care for creations, honesty after mistakes'}\n\nMust remain constant: Age reading as 14 / early teen; Slim teenage build; Messy spiky hair silhouette; Large expressive eyes; Hooded jacket as default costume; Practical trousers and sneakers; Overall kind, non-menacing facial design\n\nDistinctive recognizable silhouette. Relatable creative teen, not a superhero. No speech bubbles, no captions, no watermarks, no logos, no gibberish text.",
+  "negative_prompt": "photorealistic, 3d render, cgi, blurry, lowres, watermark, signature, logo, text, letters, words, speech bubble text, caption text, speech balloons with writing, color, colored, watercolor, airbrush, soft shading, gradient, grayscale wash, screentone, moire, noise, jpeg artifacts, extra limbs, deformed hands, nsfw, gore, horror, creepy uncanny faces",
+  "width": 768,
+  "height": 1024,
+  "status": "GENERATED",
+  "output_path": "/workspace/characters/kaito/design-candidates/candidate_b_12098.png",
+  "approved_path": null,
+  "reference_assets": [],
+  "settings": {
+    "kind": "kaito_master_design",
+    "label": "B"
+  },
+  "error": null,
+  "created_at": "2026-09-18T15:32:42.360678Z",
+  "updated_at": "2026-09-18T15:32:42.360716Z",
+  "parent_id": null,
+  "source_type": "REAL",
+  "production_eligible": true,
+  "model_revision": null,
+  "license_notes": null
+}

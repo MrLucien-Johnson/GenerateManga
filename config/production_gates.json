@@ -1,10 +1,12 @@
 {
   "KAITO_REFERENCE_APPROVED": false,
-  "PILOT_APPROVED": true,
+  "KAITO_MASTER_DESIGN_SELECTED": false,
+  "PILOT_APPROVED": false,
   "PDF_READY": false,
   "notes": {
-    "KAITO_REFERENCE_APPROVED": "Must be true (via ApprovalWorkflow + continuity) before bulk page generation.",
-    "PILOT_APPROVED": "Human requested Option A; approved via ApprovalWorkflow (Streamlit checklist UI was flaky). Mock pipeline testing only.",
-    "PDF_READY": "Computed from approved art + gates; do not force true manually."
+    "KAITO_REFERENCE_APPROVED": "Must be true (via ApprovalWorkflow + continuity) before bulk page generation. Mock references cannot open this gate.",
+    "KAITO_MASTER_DESIGN_SELECTED": "Set true only after a REAL master design candidate is human-selected.",
+    "PILOT_APPROVED": "Human pilot sign-off after REAL pages 1\u20135 are approved. Prior mock pilot approval was revoked (Phase 12).",
+    "PDF_READY": "Computed from approved art + gates; do not force true manually. Mock assets are never production PDF ready."
   }
 }

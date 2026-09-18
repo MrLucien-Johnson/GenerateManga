@@ -70,18 +70,29 @@ def main() -> None:
         except json.JSONDecodeError:
             kaito_gate = False
 
+    pilot_gate = False
+    gates_path = project / "config" / "production_gates.json"
+    if gates_path.is_file():
+        try:
+            gates_data = json.loads(gates_path.read_text(encoding="utf-8"))
+            pilot_gate = bool(gates_data.get("PILOT_APPROVED"))
+        except json.JSONDecodeError:
+            pilot_gate = False
+
     state_path = project / "config" / "state.json"
     if not state_path.is_file():
         state = ProjectState(
             gates=ProductionGates(
                 kaito_reference_approved=kaito_gate,
-                pilot_approved=False,
+                pilot_approved=pilot_gate,
                 pdf_ready=False,
                 notes={
                     "KAITO_REFERENCE_APPROVED": (
                         "Hydrated from continuity.json" if kaito_gate else "Initial — false"
                     ),
-                    "PILOT_APPROVED": "Initial — false",
+                    "PILOT_APPROVED": (
+                        "Hydrated from production_gates.json" if pilot_gate else "Initial — false"
+                    ),
                 },
             )
         )
@@ -89,9 +100,16 @@ def main() -> None:
         print(f"Created {state_path.relative_to(project)}")
     else:
         state = load_state(root=project)
+        changed = False
         if kaito_gate and not state.gates.kaito_reference_approved:
             state.gates.kaito_reference_approved = True
             state.gates.notes["KAITO_REFERENCE_APPROVED"] = "Synced from continuity.json"
+            changed = True
+        if pilot_gate and not state.gates.pilot_approved:
+            state.gates.pilot_approved = True
+            state.gates.notes["PILOT_APPROVED"] = "Synced from production_gates.json"
+            changed = True
+        if changed:
             save_state(state, root=project)
         print(
             "State gates: "

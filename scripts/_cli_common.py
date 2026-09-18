@@ -471,6 +471,14 @@ def gate_open(gate_name: str, *, project: Path | None = None) -> bool:
             except json.JSONDecodeError:
                 return False
             return bool((cont.get("production_gate") or {}).get("KAITO_REFERENCE_APPROVED"))
+    if gate_name.upper() == "PILOT_APPROVED":
+        gates_path = project / "config" / "production_gates.json"
+        if gates_path.is_file():
+            try:
+                data = json.loads(gates_path.read_text(encoding="utf-8"))
+            except json.JSONDecodeError:
+                return False
+            return bool(data.get("PILOT_APPROVED"))
     return False
 
 

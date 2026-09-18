@@ -60,15 +60,27 @@ def main() -> None:
             keep.touch()
             created_keeps.append(str(keep.relative_to(project)))
 
+    # Hydrate KAITO gate from committed continuity.json (state.json is gitignored).
+    kaito_gate = False
+    continuity_path = project / "characters" / "kaito" / "continuity.json"
+    if continuity_path.is_file():
+        try:
+            cont = json.loads(continuity_path.read_text(encoding="utf-8"))
+            kaito_gate = bool((cont.get("production_gate") or {}).get("KAITO_REFERENCE_APPROVED"))
+        except json.JSONDecodeError:
+            kaito_gate = False
+
     state_path = project / "config" / "state.json"
     if not state_path.is_file():
         state = ProjectState(
             gates=ProductionGates(
-                kaito_reference_approved=False,
+                kaito_reference_approved=kaito_gate,
                 pilot_approved=False,
                 pdf_ready=False,
                 notes={
-                    "KAITO_REFERENCE_APPROVED": "Initial — false",
+                    "KAITO_REFERENCE_APPROVED": (
+                        "Hydrated from continuity.json" if kaito_gate else "Initial — false"
+                    ),
                     "PILOT_APPROVED": "Initial — false",
                 },
             )
@@ -77,6 +89,10 @@ def main() -> None:
         print(f"Created {state_path.relative_to(project)}")
     else:
         state = load_state(root=project)
+        if kaito_gate and not state.gates.kaito_reference_approved:
+            state.gates.kaito_reference_approved = True
+            state.gates.notes["KAITO_REFERENCE_APPROVED"] = "Synced from continuity.json"
+            save_state(state, root=project)
         print(
             "State gates: "
             f"KAITO_REFERENCE_APPROVED={state.gates.kaito_reference_approved}, "

@@ -448,11 +448,30 @@ def _summarize_character_bible(bible: dict[str, Any]) -> str:
 
 
 def gate_open(gate_name: str, *, project: Path | None = None) -> bool:
+    """Return True if the named production gate is open.
+
+    ``config/state.json`` is the live source, but for
+    ``KAITO_REFERENCE_APPROVED`` we also honor the committed
+    ``characters/kaito/continuity.json`` production_gate flag so clones
+    without local state still respect a human-opened gate.
+    """
+    project = project or root()
     state = load_state(root=project)
     try:
-        return state.gates.is_open(gate_name)
+        if state.gates.is_open(gate_name):
+            return True
     except KeyError:
-        return False
+        pass
+
+    if gate_name.upper() == "KAITO_REFERENCE_APPROVED":
+        cont_path = project / "characters" / "kaito" / "continuity.json"
+        if cont_path.is_file():
+            try:
+                cont = json.loads(cont_path.read_text(encoding="utf-8"))
+            except json.JSONDecodeError:
+                return False
+            return bool((cont.get("production_gate") or {}).get("KAITO_REFERENCE_APPROVED"))
+    return False
 
 
 def count_generation_stats(*, project: Path | None = None) -> dict[str, int]:

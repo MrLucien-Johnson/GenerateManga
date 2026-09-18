@@ -1,59 +1,81 @@
-# Kaito Real Design Review (TEMPLATE)
+# Kaito Real Design Review — Phase 12
 
-> **Status: BLOCKED** — awaiting REAL generation. Do not treat this file as a completed design review.
+**Status:** HUMAN SELECTION REQUIRED  
+**Gate:** `KAITO_MASTER_DESIGN_SELECTED = false`  
+**Do not auto-select.** Engineering must not choose A/B/C/D for you.
 
-## Gate status
+## Backend used
 
-| Gate | Status |
-|------|--------|
-| `KAITO_MASTER_DESIGN_SELECTED` | **BLOCKED** — no master selected |
-| `KAITO_REFERENCE_APPROVED` | **BLOCKED** — mock refs revoked (Phase 12) |
-| `PILOT_APPROVED` | **BLOCKED** — mock pilot pages moved to `rejected/mock-pilot-pages/` |
-| `PDF_READY` | **BLOCKED** |
-
-## Environment
-
-Run:
-
-```bash
-python scripts/check_generation_environment.py
-```
-
-| Check | Result |
+| Field | Value |
 |-------|--------|
-| LOCAL_GENERATION | **BLOCKED** (placeholder until check is run on a GPU host) |
-| CUDA / VRAM | _TBD_ |
-| local_model_path | _TBD_ |
-| diffusers / torch | _TBD_ |
+| Primary attempt | Local diffusion — **BLOCKED** (no CUDA, no torch, no diffusers) |
+| Hugging Face | **BLOCKED** (`HF_TOKEN` unset) |
+| Free remote (Pollinations) | Tried; early samples mismatched character bible (wrong hair/gender cues) — discarded |
+| Candidates delivered via | **`studio_image` / `cursor-generate-image`** (genuine AI manga line-art, not mock Pillow) |
+| Model revision | n/a (studio image tool) |
+| License | **Owner review required** — not auto-cleared for commercial KDP |
 
-## Design candidates
+## Environment (this host)
 
-Generate with a REAL backend only:
-
-```bash
-python scripts/generate_kaito_designs.py
-# or
-python scripts/import_colab_kaito_designs.py path/to/package.zip --mark-production-eligible
+```
+LOCAL_GENERATION: BLOCKED
+Reason: torch/diffusers/transformers/accelerate/safetensors missing; nvidia-smi absent; no local_model_path
+RAM: ~16 GB | Disk free: ~228 GB
 ```
 
-| Candidate | Image | Model | Seed | Backend | source_type | Decision |
-|-----------|-------|-------|------|---------|-------------|----------|
-| A | _BLOCKED — not generated_ | — | — | — | — | — |
-| B | _BLOCKED — not generated_ | — | — | — | — | — |
-| C | _BLOCKED — not generated_ | — | — | — | — | — |
-| D | _BLOCKED — not generated_ | — | — | — | — | — |
+## Candidate count
 
-**Selected master:** `null` (do not auto-select)
+**4** real design candidates (A–D)
 
-## Human review checklist
+## Candidate paths
 
-- [ ] Environment READY (not mock)
-- [ ] Four candidates reviewed side-by-side
-- [ ] Continuity vs character bible verified
-- [ ] Winner selected in Streamlit **Kaito Master Design** (with confirmation)
-- [ ] Reference pack regenerated from selected master (REAL)
-- [ ] `KAITO_REFERENCE_APPROVED` opened only after non-mock refs
+| Candidate | Image | Metadata | Seed | Dimensions | Status |
+|-----------|-------|----------|------|------------|--------|
+| **A** | `characters/kaito/design-candidates/kaito-design-A.png` | `…/a4c10d3b2aba447cbad141d74ff5790b.json` | 12001 | 864×1152 | AWAITING_DESIGN_SELECTION |
+| **B** | `characters/kaito/design-candidates/kaito-design-B.png` | `…/85e8eee6419b4e0f8ec83e460878c7d8.json` | 12098 | 864×1152 | AWAITING_DESIGN_SELECTION |
+| **C** | `characters/kaito/design-candidates/kaito-design-C.png` | `…/2e236f6ad9aa424f939785374118cc80.json` | 12195 | 864×1152 | AWAITING_DESIGN_SELECTION |
+| **D** | `characters/kaito/design-candidates/kaito-design-D.png` | `…/9445dc9fc1e04ee3b31e3a51de4a4123.json` | 12292 | 864×1152 | AWAITING_DESIGN_SELECTION |
 
-## Notes
+## Candidate notes (for your eye — not a choice)
 
-Phase 12 engineering landed schemas, mock production ban, design-candidate workflow, and gate resets. **Image generation and design selection are intentionally out of scope for this phase.**
+- **A:** Confident/curious; full-body + face; hood down; hoodie + sneakers  
+- **B:** Softer thoughtful bust + full-body; jogger-style trousers  
+- **C:** Adventurous grin; cargo trousers; hands in pockets  
+- **D:** Focused creative; holding sketchbook  
+
+All are black-and-white manga line art with messy spiky hair and hooded jacket — **not** geometric mock placeholders.
+
+## Production / gate honesty
+
+| Item | Count / state |
+|------|----------------|
+| Mock placeholders (legacy refs) | Still under `characters/kaito/references/` as NON-PRODUCTION; **cannot** open `KAITO_REFERENCE_APPROVED` |
+| Real design candidates | 4 |
+| Kaito selected | **NO** |
+| Kaito references approved | **0/8** (canonical pack not generated until you pick a master) |
+| Pilot pages approved | **0/5** (mock pilot revoked in Phase 12) |
+| Final story pages approved | **0/50** |
+
+## HUMAN SELECTION REQUIRED
+
+1. Pull this branch / open the files above on GitHub  
+2. Or launch review UI:
+
+```bash
+streamlit run app.py
+```
+
+3. Open sidebar → **Kaito Master Design**  
+4. Compare A–D → **SELECT AS KAITO** with confirmation  
+5. Or request regeneration  
+
+Until you select:
+
+- `KAITO_MASTER_DESIGN_SELECTED = false`  
+- `KAITO_REFERENCE_APPROVED = false`  
+- No manga pages 1–50 / 1–5 production generation  
+
+## Colab (still available for future consistency packs)
+
+Notebook: `colab/echo_of_the_inkwell_generator.ipynb`  
+Import: `python scripts/import_colab_kaito_designs.py <package.zip>`

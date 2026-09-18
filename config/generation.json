@@ -1,5 +1,5 @@
 {
-  "default_backend": "local",
+  "default_backend": "free_remote",
   "use_mock_backend": false,
   "width": 2550,
   "height": 3300,
@@ -10,11 +10,12 @@
   "local_model_path": null,
   "local_model_id": null,
   "huggingface_model": "black-forest-labs/FLUX.1-schnell",
+  "free_remote_model": "pollinations-flux",
   "design_candidates": {
     "count": 4,
-    "width": 1024,
+    "width": 768,
     "height": 1024,
     "labels": ["A", "B", "C", "D"]
   },
-  "notes": "Phase 12: use_mock_backend is false; default_backend is local (requires a pre-downloaded model path — no auto-download). Mock is still available explicitly for tests via ECHO_MOCK_GENERATION=1. Design candidates use 1024x1024 and count=4. Never auto-download large models without informing the user."
+  "notes": "Phase 12: Local GPU BLOCKED on this host (no CUDA/torch). default_backend=free_remote (Pollinations, no API key) for design exploration. Prefer local or HF when available. use_mock_backend=false. Mock is tests-only via ECHO_MOCK_GENERATION=1. Never auto-download large models without informing the user. Free-remote license requires owner review before commercial KDP use."
 }

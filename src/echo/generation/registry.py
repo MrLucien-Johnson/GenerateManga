@@ -14,6 +14,7 @@ _REGISTRY: dict[str, type[GenerationBackend]] | None = None
 
 def _build_registry() -> dict[str, type[GenerationBackend]]:
     from echo.generation.colab_backend import ColabBackend
+    from echo.generation.free_remote_backend import FreeRemoteBackend
     from echo.generation.huggingface_backend import HuggingFaceBackend
     from echo.generation.local_backend import LocalDiffusionBackend
     from echo.generation.mock_backend import MockGenerationBackend
@@ -23,6 +24,7 @@ def _build_registry() -> dict[str, type[GenerationBackend]]:
         LocalDiffusionBackend.name: LocalDiffusionBackend,
         ColabBackend.name: ColabBackend,
         HuggingFaceBackend.name: HuggingFaceBackend,
+        FreeRemoteBackend.name: FreeRemoteBackend,
     }
 
 

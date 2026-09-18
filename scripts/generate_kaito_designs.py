@@ -35,6 +35,26 @@ from echo.prompts.style import COLORING_BOOK_RULES, MASTER_VISUAL_STYLE, NEGATIV
 
 LABELS = ("A", "B", "C", "D")
 
+# Distinct exploration angles — same character bible, different presentation cues.
+DESIGN_VARIATIONS = {
+    "A": (
+        "Design exploration A: confident curious expression, front three-quarter full-body, "
+        "hood down, messy spiky hair fully visible, jacket unzipped slightly, hands free at sides."
+    ),
+    "B": (
+        "Design exploration B: softer thoughtful expression, clear face close-up inset plus full-body, "
+        "slightly different spiky hair clumps but same silhouette family, hood down, standing relaxed."
+    ),
+    "C": (
+        "Design exploration C: adventurous grin, three-quarter view, hood half-up showing hair spikes, "
+        "same hooded jacket design, dynamic but readable silhouette for coloring book."
+    ),
+    "D": (
+        "Design exploration D: focused creative expression, full-body holding a sketchbook under one arm, "
+        "same trainers and trousers, unmistakable teenage proportions, clean white background."
+    ),
+}
+
 
 def _build_design_prompt(bible: dict, label: str) -> tuple[str, str]:
     appearance = (
@@ -42,13 +62,23 @@ def _build_design_prompt(bible: dict, label: str) -> tuple[str, str]:
         or bible.get("appearance")
         or ""
     )
+    variation = DESIGN_VARIATIONS.get(label.upper(), DESIGN_VARIATIONS["A"])
     parts = [
         MASTER_VISUAL_STYLE.strip(),
         COLORING_BOOK_RULES.strip(),
-        "KAITO MASTER DESIGN CANDIDATE — full-body character design sheet, front three-quarter view.",
-        f"Candidate label: {label}",
+        (
+            "Professional Japanese manga protagonist CHARACTER DESIGN SHEET. "
+            "Black and white clean ink line art only. Pure white background. "
+            "No grayscale, no gradients, no color, no screentones, no painted shading. "
+            "Coloring-book compatible. Single character: Kaito."
+        ),
+        variation,
+        (
+            "Include readable full-body figure plus a larger face/head detail in the same sheet "
+            "composition without written labels or text of any kind."
+        ),
         f"Name: {bible.get('name', 'Kaito')}",
-        f"Age: {bible.get('age', 14)}",
+        f"Age: {bible.get('age', 14)} — unmistakably a 14-year-old boy, NOT an adult.",
         str(appearance),
     ]
     for key in (
@@ -57,6 +87,7 @@ def _build_design_prompt(bible: dict, label: str) -> tuple[str, str]:
         "hairstyle",
         "hair_silhouette",
         "approximate_height",
+        "body_proportions",
     ):
         if bible.get(key):
             parts.append(f"{key}: {bible[key]}")
@@ -66,18 +97,21 @@ def _build_design_prompt(bible: dict, label: str) -> tuple[str, str]:
     jacket = bible.get("jacket_design") or {}
     if isinstance(jacket, dict):
         parts.append(f"jacket: {json.dumps(jacket)}")
+    personality = bible.get("personality")
+    if personality:
+        parts.append(f"personality cues in posing: {personality}")
     constants = bible.get("must_remain_constant") or []
     if constants:
         parts.append("Must remain constant: " + "; ".join(str(c) for c in constants))
     parts.append(
-        "Clean black-and-white manga line art, coloring-book friendly, "
-        "consistent proportions, white background, no text, no watermark."
+        "Distinctive recognizable silhouette. Relatable creative teen, not a superhero. "
+        "No speech bubbles, no captions, no watermarks, no logos, no gibberish text."
     )
     return "\n\n".join(p for p in parts if p), NEGATIVE_CONSTRAINTS.strip()
 
 
 def _resolve_real_backend(project: Path):
-    """Resolve a non-mock backend or die."""
+    """Resolve a non-mock backend or die. Prefer local → hf → free_remote → colab note."""
     if mock_generation_enabled(root=project):
         die(
             "Mock generation is enabled — generate_kaito_designs refuses mock.",
@@ -90,23 +124,41 @@ def _resolve_real_backend(project: Path):
     if gen.get("use_mock_backend"):
         die("generation.json use_mock_backend is true — refusing mock for design candidates.")
 
-    default = str(gen.get("default_backend") or "local").lower()
-    if default == "mock":
+    preferred = str(gen.get("default_backend") or "local").lower()
+    if preferred == "mock":
         die(
             "default_backend is mock — design candidates require a REAL backend.",
-            hint="Set default_backend to local|huggingface|colab with credentials/model configured.",
+            hint="Set default_backend to local|huggingface|free_remote|colab.",
         )
 
-    backend = get_backend(default, root=project)
-    ok, reason = backend.available()
-    if not ok:
-        die(
-            f"Backend '{default}' unavailable: {reason}",
-            hint="Configure a local model path or HF_TOKEN. This script will not fall back to mock.",
-        )
-    if backend.name == "mock":
-        die("Resolved backend is mock — refusing.")
-    return backend, default
+    # Try preferred first, then fallbacks that can actually produce images here.
+    candidates = [preferred]
+    for name in ("local", "huggingface", "free_remote"):
+        if name not in candidates:
+            candidates.append(name)
+
+    last_reason = ""
+    for name in candidates:
+        if name == "mock":
+            continue
+        backend = get_backend(name, root=project)
+        ok, reason = backend.available()
+        if ok and backend.name != "mock":
+            if name != preferred:
+                print(f"Note: preferred backend '{preferred}' unavailable; using '{name}'.")
+                print(f"  ({last_reason or reason})")
+            return backend, name
+        last_reason = reason
+
+    die(
+        f"No REAL image backend available. Last error: {last_reason}",
+        hint=(
+            "Install local GPU stack, set HF_TOKEN, ensure network for free_remote, "
+            "or use colab/echo_of_the_inkwell_generator.ipynb then "
+            "scripts/import_colab_kaito_designs.py"
+        ),
+    )
+    raise AssertionError  # unreachable
 
 
 @handle_cli_errors

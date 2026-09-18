@@ -103,13 +103,17 @@ def list_candidates(
     character_id: str = "kaito",
 ) -> list[DesignCandidate]:
     d = design_candidates_dir(root=root, character_id=character_id)
-    out: list[DesignCandidate] = []
+    by_id: dict[str, DesignCandidate] = {}
     for path in sorted(d.glob("*.json")):
+        # Skip human-friendly duplicates like kaito-design-A.json
+        if path.name.startswith("kaito-design-"):
+            continue
         try:
-            out.append(DesignCandidate.model_validate(json.loads(path.read_text(encoding="utf-8"))))
+            cand = DesignCandidate.model_validate(json.loads(path.read_text(encoding="utf-8")))
         except Exception:
             continue
-    return out
+        by_id[cand.id] = cand
+    return sorted(by_id.values(), key=lambda c: (c.label, c.created_at.isoformat()))
 
 
 def _update_continuity_master(

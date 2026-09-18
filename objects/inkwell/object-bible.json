@@ -1,0 +1,62 @@
+{
+  "object_id": "inkwell",
+  "name": "The Inkwell",
+  "size": {
+    "relative": "Fits in two teen hands; roughly the height of a large jam jar",
+    "dimensions_approx": "About 10–12 cm tall including lid; 7–8 cm wide at the belly",
+    "visual_read": "Small enough to cradle against the chest when wrapped; large enough to be a clear hero prop in medium shots"
+  },
+  "material": {
+    "body": "Dark smoked glass with subtle thickness; not perfectly clear",
+    "base": "Short metal or aged brass foot ring",
+    "lid": "Fitted lid with a small knob; metal with soft patina",
+    "ink": "Deep black ink that looks denser than ordinary calligraphy ink; occasional faint shimmer when active"
+  },
+  "silhouette": "Classic round-bellied inkwell with a narrower neck and flat-ish lid; instantly readable as a bottle/well, not a modern pen cartridge",
+  "markings": [
+    "Faint etched band around the shoulder—old maker's marks, not glowing runes by default",
+    "Tiny hairline scratches from age",
+    "No loud logos; no cartoon stickers",
+    "When active, etchings may catch light as thin white line-art highlights (not neon)"
+  ],
+  "lid": {
+    "style": "Snug circular lid with a small rounded knob",
+    "states": ["closed (default safe)", "ajar", "fully open"],
+    "story_rule": "Major Echo effects require the lid open with intent; closed lid helps collapse unstable spaces"
+  },
+  "age_weathering": "Looks decades old: soft brass dullness, micro-chips at the glass base edge, interior ink stains on the neck; cared for, not filthy",
+  "supernatural_visual_characteristics": [
+    "Idle: nearly ordinary antique inkwell",
+    "Active: ink surface may ripple against gravity; faint line-echo rings in air above the mouth",
+    "Crossing moment: thin ink filaments or outline sparkles connecting well to page",
+    "Low ink: visible shallow pool; light catches empty glass belly",
+    "Never depicted as shooting laser beams or casting large fireballs"
+  ],
+  "when_effects_appear": [
+    "Lid opened with deliberate creative intent",
+    "Brush or tool dips and first committed stroke lands",
+    "A drawing finishes and an Echo stabilizes",
+    "Unstable unfinished emotion causes leak (drip upward, mist, corner shadows)",
+    "Drawing-space open while well is nearby and creator is focused"
+  ],
+  "line_art_effect_representation": {
+    "preferred": "Sparse speed-lines, shimmer hatch, outline glow as broken white contour, ink-ripple concentric circles",
+    "avoid": "Heavy screentone storms that obscure the object; rainbow gradients; lens-flare blobs",
+    "coloring_book_note": "Effects must remain optional line suggestions so the Inkwell shape stays easy to color"
+  },
+  "must_remain_constant": [
+    "Round-bellied glass silhouette with neck and lid",
+    "Antique, not high-tech",
+    "Readable size relative to Kaito's hands",
+    "Ink is black-dominant (may shimmer, not recolor into candy hues as default)",
+    "Feels heavy with history"
+  ],
+  "prohibited_variations": [
+    "Turning into a fountain pen, smartphone, or unrelated artifact mid-story",
+    "Changing into a huge cauldron or tiny perfume sample",
+    "Adding wings, faces, or chibi limbs to the Inkwell itself",
+    "Unlimited glowing power aura that never depletes",
+    "Transparent empty soda-bottle redesign",
+    "Inventing on-disk reference images that do not exist"
+  ]
+}

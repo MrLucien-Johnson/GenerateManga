@@ -1,0 +1,41 @@
+{
+  "location_id": "drawing_space",
+  "name": "Drawing Space",
+  "layout": "A pocket world generated from open Inkwell focus and active drawings. Terrain reads as paper, ink washes, and sketched landforms rather than natural geology. Early visits are gentle ink hills; crisis visit becomes a storm of unfinished strokes and torn-paper sky. Space collapses when the Inkwell lid closes or focus breaks.",
+  "key_landmarks": [
+    "Entry shimmer / page-threshold",
+    "Ink hills / wash dunes (play chapter)",
+    "Horizon line that can pale when ink thins",
+    "Storm scribble fields (crisis chapter)",
+    "Arena-like clear ground for facing The Unfinished",
+    "Calm paper sky after completion"
+  ],
+  "furniture_objects": [
+    "No ordinary furniture by default",
+    "Occasional giant sketched props if drawn intentionally",
+    "Floating line fragments and eraser-dust motes as environmental particles",
+    "Platform-like paper sheets that act as ground planes"
+  ],
+  "visual_identifiers": [
+    "Line-art physics: hatching as grass, contour lines as ridges",
+    "Coloring-book clarity: large shapes, limited clutter",
+    "Mood shifts with story: playful → thinning → storm → cleared",
+    "Characters remain solid against sketchy environment",
+    "Effects stay ink/paper themed—not fire/ice elemental defaults"
+  ],
+  "camera_possibilities": [
+    "Wide establishing of fantastical paper landscape",
+    "Running tracking shots with Sumi",
+    "Horizon pale/out-of-ink warning frames",
+    "Low angle on Unfinished in storm",
+    "Transformation climax centered composition",
+    "Soft wide calm after resolution"
+  ],
+  "continuity_constraints": [
+    "Drawing space only appears while Inkwell rules allow (open, focused, ink available)",
+    "Visual state must match chapter emotion: play vs crisis vs calm",
+    "Do not treat as a permanent physical location on the neighbourhood map",
+    "When collapsing, return characters to the real location they entered from (bedroom or school vicinity per page plan)",
+    "Avoid redesigning as a generic video-game void unrelated to ink/paper"
+  ]
+}

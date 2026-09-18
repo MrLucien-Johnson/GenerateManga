@@ -1,0 +1,126 @@
+{
+  "character_id": "kaito",
+  "name": "Kaito",
+  "age": 14,
+  "approximate_height": "About 160–165 cm (average early-teen height); reads slightly lanky next to peers",
+  "body_proportions": {
+    "build": "Slim teenage build; narrow shoulders; longish limbs without adult muscle mass",
+    "torso": "Lean torso; jacket often slightly oversized for cozy silhouette",
+    "limbs": "Slim arms and legs; knees and elbows subtly angular, not soft-chibi",
+    "hands": "Youthful hands with slightly long fingers from constant drawing",
+    "notes": "Keep proportions readable for coloring books: clear silhouette, no extreme stylization shifts between pages"
+  },
+  "face_shape": "Soft oval with a gently pointed chin; youthful cheeks that can flush; not round-chibi and not sharp-adult",
+  "eye_shape": "Large, expressive almond eyes with clear upper lids; irises readable in line art; strong catchlights when hopeful or amazed",
+  "eyebrow_characteristics": "Medium-thick, slightly messy brows that angle up when determined and pinch together when anxious; brows are a primary emotion signal",
+  "nose_characteristics": "Small simple nose: short bridge with a soft button tip in 3/4 views; often a minimal line or dot in front view to stay coloring-friendly",
+  "hairstyle": "Messy spiky hair with uneven clumps; several forward spikes over the forehead; sides a bit shorter; looks like he forgot a comb but on purpose",
+  "hair_silhouette": "Irregular spiky crown; highest spikes slightly off-center; readable dark outline even when hood is up (hood rarely fully covers spikes)",
+  "hair_length": "Short-to-medium; spikes reach just above the eyes in front; nape short; no long trailing locks",
+  "clothing": {
+    "default_outfit": "Hooded jacket over a plain casual shirt or light undershirt, practical trousers, sneakers",
+    "coloring_notes": "Keep garment regions clearly separated for flat coloring; zipper and pocket lines should stay consistent",
+    "season": "Looks like mild weather / school-year casual; not heavy winter gear"
+  },
+  "jacket_design": {
+    "type": "Casual zip-up hooded jacket",
+    "fit": "Slightly loose on slim frame",
+    "closure": "Center front zipper (show zipper pull in detail shots)",
+    "pockets": "Two lower side pockets; optional small chest pocket consistent when shown",
+    "hem": "Straight hem around hip line",
+    "cuffs": "Simple ribbed or banded cuffs",
+    "visual_priority": "Jacket is the primary costume identifier across pages"
+  },
+  "hood_design": {
+    "shape": "Rounded hood with modest volume; not huge fantasy hood",
+    "wear_states": ["down on back (default)", "half-up when shy or cold", "fully up rare—keep face and hair readable"],
+    "drawstrings": "Two short drawstrings hanging when hood is down; keep length consistent",
+    "interior": "Simple lining suggestion only; avoid busy patterns"
+  },
+  "trousers": {
+    "type": "Practical straight or slightly tapered casual trousers / chinos",
+    "fit": "Comfortable; not skinny, not baggy streetwear",
+    "pockets": "Side seam pockets; optional back pocket outline",
+    "notes": "Clean silhouette for coloring; avoid logos and elaborate seams"
+  },
+  "footwear": {
+    "type": "Low-top sneakers",
+    "details": "Simple toe cap, visible laces, modest sole thickness",
+    "notes": "Keep left/right lace style consistent; no high-fashion redesigns mid-story"
+  },
+  "accessories": [
+    "School bag / shoulder bag for sketchbook (when in transit)",
+    "Sketchbook (recurring prop)",
+    "Occasional pencil or brush in hand",
+    "No jewelry by default; no headphones required"
+  ],
+  "posture_tendencies": [
+    "Slight forward lean when curious or drawing",
+    "Shoulders rise and hunches when embarrassed or anxious",
+    "Opens chest and stands taller after mid-story courage turns",
+    "Often cradles sketchbook against side or chest",
+    "Weight shifts to one leg when listening"
+  ],
+  "personality": {
+    "core": "Quiet, observant, kind, imaginative, conflict-avoidant until responsibility forces action",
+    "social": "Loyal to Ren; polite to adults; slow to trust crowds",
+    "creative": "Sees stories in margins; fears judgment; learns finishing is an act of courage",
+    "values": "Friendship, care for creations, honesty after mistakes"
+  },
+  "expression_vocabulary": [
+    "soft hope",
+    "shy half-smile",
+    "wide-eyed wonder",
+    "anxious brow pinch",
+    "embarrassed flush",
+    "focused drawing stare",
+    "startled open mouth",
+    "determined clenched jaw",
+    "guilty downward glance",
+    "relieved warm smile",
+    "tear-bright courage (rare, climax)",
+    "peaceful contentment (finale)"
+  ],
+  "recurring_gestures": [
+    "Ruffling own spiky hair when unsure",
+    "Shielding sketchbook page with forearm",
+    "Zipper fidget on jacket",
+    "Brush or pencil held like a talisman",
+    "Offering an open palm to Sumi",
+    "Deep breath before a final stroke"
+  ],
+  "must_remain_constant": [
+    "Age reading as 14 / early teen",
+    "Slim teenage build",
+    "Messy spiky hair silhouette",
+    "Large expressive eyes",
+    "Hooded jacket as default costume",
+    "Practical trousers and sneakers",
+    "Overall kind, non-menacing facial design"
+  ],
+  "features_allowed_to_change": [
+    "Hood up/down",
+    "Facial expression within vocabulary",
+    "Temporary dirt, ink stains on fingers or cuffs",
+    "Jacket open vs zipped",
+    "Presence/absence of bag and sketchbook",
+    "Tired eye bags after heavy Echo use",
+    "Wind-tossed hair spikes in outdoor action"
+  ],
+  "prohibited_variations": [
+    "Adult muscular redesign",
+    "Long flowing hair or neat idol haircut",
+    "Chibi-only redesign as default (chibi ok only for optional gag inserts, not story continuity)",
+    "Replacing hooded jacket with unrelated costume without story reason",
+    "Changing eye shape to narrow sharp villain eyes as default",
+    "Adding scars, face paint, or heavy accessories",
+    "Gender-swap or age-swap variants in main continuity"
+  ],
+  "continuity_notes": [
+    "Locked concept: 14, slim teenage build, messy spiky hair, expressive eyes, hooded jacket, practical trousers, sneakers.",
+    "When Inkwell effects appear near Kaito, keep his anatomy stable—magic should not distort his core design.",
+    "Ink stains are temporary storytelling marks; wash off between clean scenes unless continuity requires them.",
+    "Sumi interactions should emphasize gentleness: crouch, open hand, eye-level with small fox.",
+    "Reference images are tracked separately in continuity.json; do not invent filenames as existing assets."
+  ]
+}

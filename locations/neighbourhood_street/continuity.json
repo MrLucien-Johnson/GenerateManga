@@ -1,0 +1,38 @@
+{
+  "location_id": "neighbourhood_street",
+  "version": "0.1.0",
+  "reference_slots": {
+    "main-street": {
+      "filename": "neighbourhood_main_street.png",
+      "status": "MISSING",
+      "path": null,
+      "approved_at": null
+    },
+    "side-street": {
+      "filename": "neighbourhood_side_street.png",
+      "status": "MISSING",
+      "path": null,
+      "approved_at": null
+    },
+    "alley": {
+      "filename": "neighbourhood_alley.png",
+      "status": "MISSING",
+      "path": null,
+      "approved_at": null
+    },
+    "night-streetlights": {
+      "filename": "neighbourhood_night.png",
+      "status": "MISSING",
+      "path": null,
+      "approved_at": null
+    }
+  },
+  "production_gate": {
+    "NEIGHBOURHOOD_STREET_REFERENCE_APPROVED": false
+  },
+  "notes": [
+    "All neighbourhood street reference slots are MISSING.",
+    "Do not invent fake image files.",
+    "Future assets intended under locations/neighbourhood_street/references/."
+  ]
+}

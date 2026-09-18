@@ -1,0 +1,44 @@
+{
+  "location_id": "mysterious_shop",
+  "name": "Mysterious Stationery Shop",
+  "layout": "Narrow shop interior deeper than its storefront suggests. Front door with bell; central aisle between tall shelves; wooden counter toward the back where Mira stands. A high rear shelf holds cloth-covered tools including the Inkwell. Soft clutter without hazardous mess.",
+  "key_landmarks": [
+    "Entrance door and shop bell",
+    "Front window display of paper and pens",
+    "Central aisle shelves",
+    "Wooden counter",
+    "High rear shelf with covered objects",
+    "Faint back-room curtain (implied storage; rarely entered)"
+  ],
+  "furniture_objects": [
+    "Tall wooden shelves",
+    "Glass jars and ink bottles",
+    "Paper stacks and sketch pads",
+    "Counter and stool",
+    "Cloth covers / soft wraps for special tools",
+    "Balance scale or old measuring tools (background flavor)",
+    "Small handwritten rule card near register (optional)"
+  ],
+  "visual_identifiers": [
+    "Warm dim interior vs brighter street outside",
+    "Smell cues via steam/dust motes and paper texture (visual only)",
+    "Objects feel older than the neighbourhood average",
+    "Never horror-grotto; wonder-antique tone",
+    "Inkwell shelf is sacred focal point when revealed"
+  ],
+  "camera_possibilities": [
+    "Exterior doorway threshold shot",
+    "Aisle depth shot toward counter",
+    "Counter conversation mediums with Mira",
+    "Low-to-high reveal of covered Inkwell shelf",
+    "Hero object insert when cloth lifts",
+    "Night sequel-hook shot of second covered tool"
+  ],
+  "continuity_constraints": [
+    "Door bell / threshold should recur on entries",
+    "Counter and high shelf spatial relationship stays fixed",
+    "Inkwell lives on the high shelf until lent; when returned/kept, shelf emptiness or remaining tools should make sense",
+    "Mira is strongly associated with counter space",
+    "Shop should remain recognizable between early discovery and late return scenes"
+  ]
+}

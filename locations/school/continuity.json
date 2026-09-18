@@ -1,0 +1,44 @@
+{
+  "location_id": "school",
+  "version": "0.1.0",
+  "reference_slots": {
+    "gate": {
+      "filename": "school_gate.png",
+      "status": "MISSING",
+      "path": null,
+      "approved_at": null
+    },
+    "classroom": {
+      "filename": "school_classroom.png",
+      "status": "MISSING",
+      "path": null,
+      "approved_at": null
+    },
+    "hallway": {
+      "filename": "school_hallway.png",
+      "status": "MISSING",
+      "path": null,
+      "approved_at": null
+    },
+    "fence": {
+      "filename": "school_fence.png",
+      "status": "MISSING",
+      "path": null,
+      "approved_at": null
+    },
+    "festival-board": {
+      "filename": "school_festival_board.png",
+      "status": "MISSING",
+      "path": null,
+      "approved_at": null
+    }
+  },
+  "production_gate": {
+    "SCHOOL_REFERENCE_APPROVED": false
+  },
+  "notes": [
+    "All school reference slots are MISSING.",
+    "Do not invent fake image files.",
+    "Future assets intended under locations/school/references/."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "location_id": "mysterious_shop",
+  "version": "0.1.0",
+  "reference_slots": {
+    "exterior": {
+      "filename": "mysterious_shop_exterior.png",
+      "status": "MISSING",
+      "path": null,
+      "approved_at": null
+    },
+    "aisle": {
+      "filename": "mysterious_shop_aisle.png",
+      "status": "MISSING",
+      "path": null,
+      "approved_at": null
+    },
+    "counter": {
+      "filename": "mysterious_shop_counter.png",
+      "status": "MISSING",
+      "path": null,
+      "approved_at": null
+    },
+    "inkwell-shelf": {
+      "filename": "mysterious_shop_inkwell_shelf.png",
+      "status": "MISSING",
+      "path": null,
+      "approved_at": null
+    }
+  },
+  "production_gate": {
+    "MYSTERIOUS_SHOP_REFERENCE_APPROVED": false
+  },
+  "notes": [
+    "All mysterious shop reference slots are MISSING.",
+    "Do not invent fake image files.",
+    "Future assets intended under locations/mysterious_shop/references/."
+  ]
+}

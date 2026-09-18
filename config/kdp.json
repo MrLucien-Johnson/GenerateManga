@@ -1,0 +1,13 @@
+{
+  "trim_width_in": 8.5,
+  "trim_height_in": 11.0,
+  "bleed_in": 0.125,
+  "margin_in": 0.5,
+  "dpi": 300,
+  "blank_reverse_pages": true,
+  "color_mode": "bw",
+  "output_pdf": "kdp/final/interior.pdf",
+  "interior_dir": "kdp/interior",
+  "preview_dir": "kdp/previews",
+  "final_dir": "kdp/final"
+}

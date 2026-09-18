@@ -1,0 +1,14 @@
+{
+  "default_backend": "mock",
+  "use_mock_backend": false,
+  "width": 2550,
+  "height": 3300,
+  "seed": null,
+  "guidance_scale": 7.5,
+  "num_inference_steps": 30,
+  "model": null,
+  "local_model_path": null,
+  "local_model_id": null,
+  "huggingface_model": "black-forest-labs/FLUX.1-schnell",
+  "notes": "Set use_mock_backend true or ECHO_MOCK_GENERATION=1 for Pillow placeholders. Never auto-download large models."
+}

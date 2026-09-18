@@ -1,0 +1,6 @@
+{
+  "auto_commit_approved": true,
+  "auto_push": false,
+  "commit_message_template": "Approve art: {paths}",
+  "never_commit": [".env", ".env.local", "*.safetensors", "models/"]
+}

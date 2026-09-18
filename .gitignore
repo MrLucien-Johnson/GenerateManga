@@ -1,0 +1,71 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+*.egg-info/
+.eggs/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Models & large binary caches (never commit)
+models/
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+*.bin
+*.onnx
+*.gguf
+.cache/
+huggingface/
+transformers/
+diffusers_cache/
+torch_cache/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Runtime / generated (keep folder structure via .gitkeep where needed)
+logs/*.log
+logs/*.log.*
+reports/*.json
+!reports/.gitkeep
+
+# Large generation outputs — keep metadata dirs, ignore heavy binaries by default
+generations/**/*.png
+generations/**/*.jpg
+generations/**/*.jpeg
+generations/**/*.webp
+approved/**/*.png
+approved/**/*.jpg
+pages/**/*.png
+kdp/final/*.pdf
+kdp/interior/*.pdf
+kdp/previews/*.png
+kdp/previews/*.pdf
+
+# Colab exchange payloads
+colab/outbound/
+colab/inbound/
+
+# Local state that may contain paths
+config/state.json

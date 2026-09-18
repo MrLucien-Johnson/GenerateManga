@@ -1,0 +1,8 @@
+# Core dependencies for Echo of the Inkwell (no torch / diffusers by default)
+pydantic==2.9.2
+Pillow==10.4.0
+reportlab==4.2.5
+streamlit==1.39.0
+python-dotenv==1.0.1
+GitPython==3.1.43
+PyYAML==6.0.2

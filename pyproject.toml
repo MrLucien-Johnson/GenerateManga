@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "echo-of-the-inkwell"
+version = "0.1.0"
+description = "Echo of the Inkwell — manga studio production toolkit"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Echo of the Inkwell" }]
+dependencies = [
+  "pydantic>=2.6,<3",
+  "Pillow>=10.2,<12",
+  "reportlab>=4.1,<5",
+  "streamlit>=1.31,<2",
+  "python-dotenv>=1.0,<2",
+  "GitPython>=3.1,<4",
+  "PyYAML>=6.0,<7",
+]
+
+[project.optional-dependencies]
+local = [
+  "diffusers>=0.27",
+  "torch>=2.1",
+]
+hf = [
+  "huggingface_hub>=0.21",
+]
+dev = [
+  "pytest>=8.0",
+]
+
+[project.urls]
+Repository = "https://github.com/mrlucien-johnson/generatemanga"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["echo*"]
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

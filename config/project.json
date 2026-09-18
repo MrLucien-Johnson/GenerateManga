@@ -1,0 +1,16 @@
+{
+  "name": "Echo of the Inkwell",
+  "slug": "echo-of-the-inkwell",
+  "version": "0.1.0",
+  "description": "Manga studio production project for Echo of the Inkwell",
+  "default_character": "kaito",
+  "story_dir": "story",
+  "characters_dir": "characters",
+  "pages_dir": "pages",
+  "generations_dir": "generations",
+  "approved_dir": "approved",
+  "rejected_dir": "rejected",
+  "prompts_dir": "prompts",
+  "reports_dir": "reports",
+  "logs_dir": "logs"
+}

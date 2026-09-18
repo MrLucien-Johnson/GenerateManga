@@ -1,0 +1,26 @@
+{
+  "id": "5e1e9e4848824c0f93fa9617558cd8ef",
+  "page_id": "page_04",
+  "panel_id": null,
+  "backend": "mock",
+  "model": "mock-lineart",
+  "seed": 1379955665,
+  "positive_prompt": "Clean black-and-white manga line art for a print coloring-book style children's manga. Bold, closed outlines; flat white background areas ready for coloring; clear silhouettes; consistent character proportions; expressive but simple faces; readable panel-friendly compositions; no screentones; no gray washes; no painterly shading; high contrast ink lines only.\n\nCOLORING BOOK RULES:\n- Pure white backgrounds / open regions suitable for hand coloring\n- Closed shapes with continuous black outlines\n- No filled black areas larger than hair/eyes accents unless specified\n- No grayscale gradients, hatching-as-shade, or photographic texture\n- Leave clear negative space for speech balloons and captions (text added later)\n- Keep important details inside safe margins\n\nCHARACTERS:\n- Kaito: face_shape: Soft oval with a gently pointed chin; youthful cheeks that can flush; not round-chibi and not sharp-adult; eye_shape: Large, expressive almond eyes with clear upper lids; irises readable in line art; strong catchlights when hopeful or amazed; hairstyle: Messy spiky hair with uneven clumps; several forward spikes over the forehead; sides a bit shorter; looks like he forgot a comb but on purpose; hair_silhouette: Irregular spiky crown; highest spikes slightly off-center; readable dark outline even when hood is up (hood rarely fully covers spikes); approximate_height: About 160–165 cm (average early-teen height); reads slightly lanky next to peers; outfit: Hooded jacket over a plain casual shirt or light undershirt, practical trousers, sneakers; jacket: Casual zip-up hooded jacket\n- ren: ren\n\nLOCATION: school\n\nPAGE: page_04 (story page 4). School arrival with Ren\n\nSCENE: Ren jogs up, steals a peek at the sketchbook, teases Kaito about never finishing pieces\n\nEMOTION: warm banter, mild embarrassment\n\nCAMERA: Two-shot at school gate; close on Ren's grin; Kaito shielding sketchbook\n\nCONTINUITY: Match locked references. Keep costume and props consistent.\n\nContinuity from previous: ['art festival poster memory', 'sketchbook']",
+  "negative_prompt": "photorealistic, 3d render, cgi, blurry, lowres, watermark, signature, logo, text, letters, words, speech bubble text, caption text, speech balloons with writing, color, colored, watercolor, airbrush, soft shading, gradient, grayscale wash, screentone, moire, noise, jpeg artifacts, extra limbs, deformed hands, nsfw, gore, horror, creepy uncanny faces",
+  "width": 1024,
+  "height": 1320,
+  "status": "GENERATED",
+  "output_path": "generations/pages/page_04/page_04_pilot.png",
+  "approved_path": null,
+  "reference_assets": [],
+  "settings": {
+    "pilot": true,
+    "story_page": 4,
+    "non_production": false,
+    "label": null
+  },
+  "error": null,
+  "created_at": "2026-09-18T12:29:54.406246Z",
+  "updated_at": "2026-09-18T12:29:54.406253Z",
+  "parent_id": null
+}

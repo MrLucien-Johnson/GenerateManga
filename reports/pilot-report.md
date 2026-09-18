@@ -1,65 +1,47 @@
-# Pilot report — Echo of the Inkwell
+# Pilot Report — Echo of the Inkwell
 
-> **TEMPLATE — pilot not yet run.**  
-> Pages **1–5** are pending Kaito reference approval and human page approval.  
-> Do not treat this file as evidence of a completed pilot until the checklist below is filled and signed.
+Generated: 2026-09-18T12:29:54.434953+00:00
+Non-production: False
+Backend: mock
 
-## Meta
+## Status
 
-| Field | Value |
-|-------|--------|
-| Volume | 1 |
-| Pilot pages | Story pages 1–5 |
-| Report status | **NOT RUN** |
-| Date started | _TBD_ |
-| Date completed | _TBD_ |
-| Reviewer | _TBD_ |
+- PILOT_APPROVED: **false** (not auto-set — human review required)
+- KAITO_REFERENCE_APPROVED at run time: **True**
 
-## Prerequisites
+## Pages 1–5
 
-| Gate / item | Status |
-|-------------|--------|
-| Kaito character bible present | Yes (in repo) |
-| Kaito reference slots | MISSING (see `characters/kaito/continuity.json`) |
-| `KAITO_REFERENCE_APPROVED` | **Closed** |
-| Backend used for pilot | _TBD (mock / local / hf / colab)_ |
-| Seeds recorded per page | _TBD_ |
+| Story page | Page id | Record id | Seed | Path | Review |
+|------------|---------|-----------|------|------|--------|
+| 1 | page_01 | `ea461e253e63463a9ab239cfc390c389` | 3843420908 | `generations/pages/page_01/page_01_pilot.png` | PENDING |
+| 2 | page_02 | `ceaff36fa55f45169af1e04714989bce` | 201763758 | `generations/pages/page_02/page_02_pilot.png` | PENDING |
+| 3 | page_03 | `877cfad9e0a84a6faea8bedb36426661` | 1514998782 | `generations/pages/page_03/page_03_pilot.png` | PENDING |
+| 4 | page_04 | `5e1e9e4848824c0f93fa9617558cd8ef` | 1379955665 | `generations/pages/page_04/page_04_pilot.png` | PENDING |
+| 5 | page_05 | `df7b310c2b4442c6a404cf2665b56963` | 569187836 | `generations/pages/page_05/page_05_pilot.png` | PENDING |
 
-## Page results (1–5)
+## Review checklist (human)
 
-| Story page | Page id | Candidate record id(s) | Approved path | Continuity OK | Notes |
-|------------|---------|------------------------|---------------|---------------|-------|
-| 1 | p1 | _pending_ | _pending_ | ☐ | |
-| 2 | p2 | _pending_ | _pending_ | ☐ | |
-| 3 | p3 | _pending_ | _pending_ | ☐ | |
-| 4 | p4 | _pending_ | _pending_ | ☐ | |
-| 5 | p5 | _pending_ | _pending_ | ☐ | |
-
-## Continuity checklist summary
-
-- [ ] Character identity matches locked references
+- [ ] Continuity vs Kaito locked references
 - [ ] Costume / jacket consistency
-- [ ] Key props (sketchbook / inkwell as applicable)
-- [ ] Location match to page plan
 - [ ] No baked-in dialogue text
-- [ ] Clean line art for coloring-book print
-- [ ] Story vs physical page mapping understood for print preview
+- [ ] Panel readability for coloring-book print
+- [ ] Approve or reject each page in Streamlit Review Studio
 
-## Decision
+## After approval
 
-| Outcome | Mark when true |
-|---------|----------------|
-| Pilot **APPROVED** → open `PILOT_APPROVED` gate | ☐ |
-| Pilot **REJECTED** → revise references/prompts and rerun | ☐ |
-| Pilot **not run** (current) | ☑ |
+Only after human sign-off, set `PILOT_APPROVED=true` via gates (do not trust this script to flip the gate).
 
-## Sign-off
+## Continuity / quality observations (mock backend)
 
-| Role | Name | Date |
-|------|------|------|
-| Art director / author | | |
-| Engineering | | |
+- **Character consistency:** N/A — mock outputs are geometric placeholders, not Kaito likenesses.
+- **Line-art quality:** Placeholder only (circle/triangle/diagonal style marks).
+- **Coloring suitability:** White background with sparse black lines — structurally OK for pipeline tests; not artistic content.
+- **Backend reliability:** Mock succeeded for all 5 pages; deterministic seeds recorded.
+- **Generation times:** Sub-second each (Pillow).
+- **Failed generations:** None.
+- **Prompt improvements:** Real manga prompts are assembled and stored under `prompts/page_0X/`; switch to local/HF/Colab before judging prompt quality.
+- **Recommended settings:** Keep mock for CI/pipeline; use real backend for creative review.
 
----
+## Gate
 
-After approval, update `config/state.json` via `echo.continuity.gates.set_gate("PILOT_APPROVED", True)` and archive generation seeds in this report for reproducibility.
+**PILOT_APPROVED remains false.** Human must approve pages 1–5 (or explicitly open the pilot gate for further mock pipeline testing) before bulk generation.

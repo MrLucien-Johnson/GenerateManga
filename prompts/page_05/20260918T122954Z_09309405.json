@@ -1,0 +1,31 @@
+{
+  "page_id": "page_05",
+  "panel_id": null,
+  "story_page": 5,
+  "positive": "Clean black-and-white manga line art for a print coloring-book style children's manga. Bold, closed outlines; flat white background areas ready for coloring; clear silhouettes; consistent character proportions; expressive but simple faces; readable panel-friendly compositions; no screentones; no gray washes; no painterly shading; high contrast ink lines only.\n\nCOLORING BOOK RULES:\n- Pure white backgrounds / open regions suitable for hand coloring\n- Closed shapes with continuous black outlines\n- No filled black areas larger than hair/eyes accents unless specified\n- No grayscale gradients, hatching-as-shade, or photographic texture\n- Leave clear negative space for speech balloons and captions (text added later)\n- Keep important details inside safe margins\n\nCHARACTERS:\n- Kaito: face_shape: Soft oval with a gently pointed chin; youthful cheeks that can flush; not round-chibi and not sharp-adult; eye_shape: Large, expressive almond eyes with clear upper lids; irises readable in line art; strong catchlights when hopeful or amazed; hairstyle: Messy spiky hair with uneven clumps; several forward spikes over the forehead; sides a bit shorter; looks like he forgot a comb but on purpose; hair_silhouette: Irregular spiky crown; highest spikes slightly off-center; readable dark outline even when hood is up (hood rarely fully covers spikes); approximate_height: About 160–165 cm (average early-teen height); reads slightly lanky next to peers; outfit: Hooded jacket over a plain casual shirt or light undershirt, practical trousers, sneakers; jacket: Casual zip-up hooded jacket\n\nLOCATION: school\n\nPAGE: page_05 (story page 5). Classroom daydream\n\nSCENE: During class, Kaito doodles a fox in the notebook margin; the bell rings before he finishes the tail\n\nEMOTION: absorbed wonder interrupted\n\nCAMERA: Over-shoulder on notebook; soft focus classroom behind\n\nCONTINUITY: Match locked references. Keep costume and props consistent.\n\nContinuity from previous: ['unfinished habit', 'fox doodle begins']",
+  "negative": "photorealistic, 3d render, cgi, blurry, lowres, watermark, signature, logo, text, letters, words, speech bubble text, caption text, speech balloons with writing, color, colored, watercolor, airbrush, soft shading, gradient, grayscale wash, screentone, moire, noise, jpeg artifacts, extra limbs, deformed hands, nsfw, gore, horror, creepy uncanny faces",
+  "reference_assets": [],
+  "dimensions": {
+    "width": 2550,
+    "height": 3300
+  },
+  "model": null,
+  "backend": "mock",
+  "seed": null,
+  "settings": {
+    "layout": "2",
+    "guidance_scale": 7.5,
+    "num_inference_steps": 30,
+    "coloring_book": true,
+    "non_production": false
+  },
+  "story_context": {
+    "action": "During class, Kaito doodles a fox in the notebook margin; the bell rings before he finishes the tail",
+    "caption": "Some ideas wait patiently. Others wait less patiently.",
+    "dialogue": [],
+    "emotion": "absorbed wonder interrupted",
+    "chapter": "Ordinary Lines",
+    "scene": "Classroom daydream"
+  },
+  "saved_at": "20260918T122954Z"
+}

@@ -1,0 +1,26 @@
+{
+  "id": "877cfad9e0a84a6faea8bedb36426661",
+  "page_id": "page_03",
+  "panel_id": null,
+  "backend": "mock",
+  "model": "mock-lineart",
+  "seed": 1514998782,
+  "positive_prompt": "Clean black-and-white manga line art for a print coloring-book style children's manga. Bold, closed outlines; flat white background areas ready for coloring; clear silhouettes; consistent character proportions; expressive but simple faces; readable panel-friendly compositions; no screentones; no gray washes; no painterly shading; high contrast ink lines only.\n\nCOLORING BOOK RULES:\n- Pure white backgrounds / open regions suitable for hand coloring\n- Closed shapes with continuous black outlines\n- No filled black areas larger than hair/eyes accents unless specified\n- No grayscale gradients, hatching-as-shade, or photographic texture\n- Leave clear negative space for speech balloons and captions (text added later)\n- Keep important details inside safe margins\n\nCHARACTERS:\n- Kaito: face_shape: Soft oval with a gently pointed chin; youthful cheeks that can flush; not round-chibi and not sharp-adult; eye_shape: Large, expressive almond eyes with clear upper lids; irises readable in line art; strong catchlights when hopeful or amazed; hairstyle: Messy spiky hair with uneven clumps; several forward spikes over the forehead; sides a bit shorter; looks like he forgot a comb but on purpose; hair_silhouette: Irregular spiky crown; highest spikes slightly off-center; readable dark outline even when hood is up (hood rarely fully covers spikes); approximate_height: About 160–165 cm (average early-teen height); reads slightly lanky next to peers; outfit: Hooded jacket over a plain casual shirt or light undershirt, practical trousers, sneakers; jacket: Casual zip-up hooded jacket\n\nLOCATION: neighbourhood_street\n\nPAGE: page_03 (story page 3). Walk to school\n\nSCENE: Kaito walks familiar streets, sketchbook corner sticking from bag; he notices a poster for the school art festival\n\nEMOTION: mild curiosity, slight dread\n\nCAMERA: Street establishing shot; medium on Kaito reading poster\n\nCONTINUITY: Match locked references. Keep costume and props consistent.\n\nContinuity from previous: ['bag with sketchbook', 'jacket worn']",
+  "negative_prompt": "photorealistic, 3d render, cgi, blurry, lowres, watermark, signature, logo, text, letters, words, speech bubble text, caption text, speech balloons with writing, color, colored, watercolor, airbrush, soft shading, gradient, grayscale wash, screentone, moire, noise, jpeg artifacts, extra limbs, deformed hands, nsfw, gore, horror, creepy uncanny faces",
+  "width": 1024,
+  "height": 1320,
+  "status": "GENERATED",
+  "output_path": "generations/pages/page_03/page_03_pilot.png",
+  "approved_path": null,
+  "reference_assets": [],
+  "settings": {
+    "pilot": true,
+    "story_page": 3,
+    "non_production": false,
+    "label": null
+  },
+  "error": null,
+  "created_at": "2026-09-18T12:29:54.378720Z",
+  "updated_at": "2026-09-18T12:29:54.378730Z",
+  "parent_id": null
+}

@@ -134,19 +134,25 @@ class PromptBuilder:
             chunks.append(f"- {name}: {str(text).strip()}{continuity}".strip())
         return "\n".join(chunks)
 
+    def _load_asset_bible(self, directory: Path, names: tuple[str, ...]) -> dict[str, Any]:
+        import json
+
+        for name in names:
+            path = directory / name
+            if path.is_file():
+                data = json.loads(path.read_text(encoding="utf-8"))
+                if isinstance(data, dict):
+                    return data
+        return {}
+
     def _object_block(self, objects: list[str]) -> str:
         if not objects:
             return ""
         lines = ["OBJECTS:"]
         for obj in objects:
             obj_dir = resolve_path("objects", obj, root=self.root)
-            bible = obj_dir / "bible.json"
-            desc = obj
-            if bible.is_file():
-                import json
-
-                data = json.loads(bible.read_text(encoding="utf-8"))
-                desc = data.get("prompt") or data.get("description") or obj
+            data = self._load_asset_bible(obj_dir, ("bible.json", "object-bible.json"))
+            desc = data.get("prompt") or data.get("description") or data.get("summary") or obj
             lines.append(f"- {obj}: {desc}")
         return "\n".join(lines)
 
@@ -154,13 +160,8 @@ class PromptBuilder:
         if not location:
             return ""
         loc_dir = resolve_path("locations", location, root=self.root)
-        bible = loc_dir / "bible.json"
-        desc = location
-        if bible.is_file():
-            import json
-
-            data = json.loads(bible.read_text(encoding="utf-8"))
-            desc = data.get("prompt") or data.get("description") or location
+        data = self._load_asset_bible(loc_dir, ("bible.json", "location-bible.json"))
+        desc = data.get("prompt") or data.get("description") or data.get("summary") or location
         return f"LOCATION: {location} — {desc}"
 
     def _continuity_block(self, slugs: list[str]) -> str:

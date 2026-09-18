@@ -44,18 +44,55 @@ class CharacterManager:
         return path
 
     def load_bible(self, slug: str) -> dict[str, Any]:
-        """Load character bible as a dict (JSON preferred, MD as text body)."""
+        """Load character bible as a dict (JSON preferred, MD as text body).
+
+        Looks for ``bible.json`` or production ``character-bible.json``.
+        """
         cdir = self.character_dir(slug)
-        json_path = cdir / "bible.json"
-        if json_path.is_file():
-            data = json.loads(json_path.read_text(encoding="utf-8"))
-            if not isinstance(data, dict):
-                raise ValidationError(f"bible.json for '{slug}' must be an object.")
-            return data
+        for name in ("bible.json", "character-bible.json"):
+            json_path = cdir / name
+            if json_path.is_file():
+                data = json.loads(json_path.read_text(encoding="utf-8"))
+                if not isinstance(data, dict):
+                    raise ValidationError(f"{name} for '{slug}' must be an object.")
+                return self._normalize_bible(slug, data)
         md_path = cdir / "bible.md"
         if md_path.is_file():
             return {"slug": slug, "text": md_path.read_text(encoding="utf-8")}
         return {"slug": slug, "text": "", "notes": "No bible file present."}
+
+    def _normalize_bible(self, slug: str, data: dict[str, Any]) -> dict[str, Any]:
+        """Ensure prompt/appearance helpers exist for production bible shapes."""
+        out = dict(data)
+        out.setdefault("slug", slug)
+        if not out.get("appearance") and not out.get("prompt"):
+            parts: list[str] = []
+            name = out.get("name") or slug
+            parts.append(str(name))
+            for key in (
+                "age",
+                "approximate_height",
+                "face_shape",
+                "eye_shape",
+                "hairstyle",
+                "hair_silhouette",
+            ):
+                if out.get(key):
+                    parts.append(str(out[key]))
+            clothing = out.get("clothing")
+            if isinstance(clothing, dict) and clothing.get("default_outfit"):
+                parts.append(str(clothing["default_outfit"]))
+            elif out.get("jacket_design"):
+                jacket = out["jacket_design"]
+                if isinstance(jacket, dict) and jacket.get("type"):
+                    parts.append(str(jacket["type"]))
+            constants = out.get("must_remain_constant")
+            if isinstance(constants, list) and constants:
+                parts.append("Must remain: " + "; ".join(str(c) for c in constants))
+            appearance = ". ".join(p.strip().rstrip(".") for p in parts if p)
+            out["appearance"] = appearance
+            out.setdefault("prompt", appearance)
+        return out
 
     def load_continuity(self, slug: str) -> dict[str, Any]:
         cdir = self.character_dir(slug)
@@ -65,7 +102,22 @@ class CharacterManager:
         data = json.loads(path.read_text(encoding="utf-8"))
         if not isinstance(data, dict):
             raise ValidationError(f"continuity.json for '{slug}' must be an object.")
-        return data
+        out = dict(data)
+        out.setdefault("slug", slug)
+        if "rules" not in out:
+            rules: list[str] = []
+            notes = out.get("notes")
+            if isinstance(notes, list):
+                rules.extend(str(n) for n in notes)
+            elif isinstance(notes, str) and notes:
+                rules.append(notes)
+            bible = self.load_bible(slug)
+            for key in ("must_remain_constant", "continuity_notes"):
+                values = bible.get(key)
+                if isinstance(values, list):
+                    rules.extend(str(v) for v in values)
+            out["rules"] = rules
+        return out
 
     def references_dir(self, slug: str) -> Path:
         return self.character_dir(slug) / "references"
@@ -83,7 +135,11 @@ class CharacterManager:
         )
 
     def load_reference_statuses(self, slug: str) -> dict[str, ReferenceStatus]:
-        """Return map of reference filename -> ReferenceStatus."""
+        """Return map of reference filename -> ReferenceStatus.
+
+        Merges ``references/status.json`` with production ``continuity.json``
+        ``reference_slots`` when present.
+        """
         ref_dir = self.references_dir(slug)
         status_path = ref_dir / "status.json"
         statuses: dict[str, ReferenceStatus] = {}
@@ -95,6 +151,22 @@ class CharacterManager:
                         statuses[name] = ReferenceStatus(value)
                     except ValueError:
                         statuses[name] = ReferenceStatus.MISSING
+
+        # Production continuity packs list intended reference slots.
+        continuity_path = self.character_dir(slug) / "continuity.json"
+        if continuity_path.is_file():
+            cont = json.loads(continuity_path.read_text(encoding="utf-8"))
+            slots = cont.get("reference_slots") if isinstance(cont, dict) else None
+            if isinstance(slots, dict):
+                for slot_name, slot in slots.items():
+                    if not isinstance(slot, dict):
+                        continue
+                    filename = slot.get("filename") or f"{slug}_{slot_name}.png"
+                    status_raw = slot.get("status", ReferenceStatus.MISSING.value)
+                    try:
+                        statuses.setdefault(str(filename), ReferenceStatus(status_raw))
+                    except ValueError:
+                        statuses.setdefault(str(filename), ReferenceStatus.MISSING)
 
         # Ensure every image file has an entry.
         for path in self.list_reference_files(slug):

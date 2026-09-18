@@ -4,71 +4,71 @@
   "reference_slots": {
     "front": {
       "filename": "kaito_front.png",
-      "status": "GENERATED",
+      "status": "APPROVED",
       "path": "characters/kaito/references/kaito_front.png",
-      "approved_at": null,
+      "approved_at": "2026-09-18T12:28:22.170839+00:00",
       "generated_at": "2026-09-18T10:53:58.112844+00:00",
       "generation_record_id": "b3237568fefa44e3a8377793f5c3965a"
     },
     "three-quarter": {
       "filename": "kaito_three_quarter.png",
-      "status": "GENERATED",
+      "status": "APPROVED",
       "path": "characters/kaito/references/kaito_three_quarter.png",
-      "approved_at": null,
+      "approved_at": "2026-09-18T12:28:22.171467+00:00",
       "generated_at": "2026-09-18T10:53:58.137955+00:00",
       "generation_record_id": "7889fd93846f4c51ac77a70818401aef"
     },
     "side": {
       "filename": "kaito_side.png",
-      "status": "GENERATED",
+      "status": "APPROVED",
       "path": "characters/kaito/references/kaito_side.png",
-      "approved_at": null,
+      "approved_at": "2026-09-18T12:28:22.171857+00:00",
       "generated_at": "2026-09-18T10:53:58.161109+00:00",
       "generation_record_id": "ef5d002cd4134e079c45177c0e92763c"
     },
     "back": {
       "filename": "kaito_back.png",
-      "status": "GENERATED",
+      "status": "APPROVED",
       "path": "characters/kaito/references/kaito_back.png",
-      "approved_at": null,
+      "approved_at": "2026-09-18T12:28:22.172241+00:00",
       "generated_at": "2026-09-18T10:53:58.183390+00:00",
       "generation_record_id": "d7f9dbaabbca4f4d93d5e6ce1a1e87ac"
     },
     "full-body": {
       "filename": "kaito_full_body.png",
-      "status": "GENERATED",
+      "status": "APPROVED",
       "path": "characters/kaito/references/kaito_full_body.png",
-      "approved_at": null,
+      "approved_at": "2026-09-18T12:28:22.172577+00:00",
       "generated_at": "2026-09-18T10:53:58.205238+00:00",
       "generation_record_id": "25de94ae5b2e40bfa51338957f2e92e3"
     },
     "expressions": {
       "filename": "kaito_expressions.png",
-      "status": "GENERATED",
+      "status": "APPROVED",
       "path": "characters/kaito/references/kaito_expressions.png",
-      "approved_at": null,
+      "approved_at": "2026-09-18T12:28:22.172937+00:00",
       "generated_at": "2026-09-18T10:53:58.227360+00:00",
       "generation_record_id": "a9520d77ab9a4be2a8c76a9973097176"
     },
     "hands": {
       "filename": "kaito_hands.png",
-      "status": "GENERATED",
+      "status": "APPROVED",
       "path": "characters/kaito/references/kaito_hands.png",
-      "approved_at": null,
+      "approved_at": "2026-09-18T12:28:22.173263+00:00",
       "generated_at": "2026-09-18T10:53:58.249249+00:00",
       "generation_record_id": "e2f492ef340243c4b0040dfdabf34a4e"
     },
     "jacket-detail": {
       "filename": "kaito_jacket_detail.png",
-      "status": "GENERATED",
+      "status": "APPROVED",
       "path": "characters/kaito/references/kaito_jacket_detail.png",
-      "approved_at": null,
+      "approved_at": "2026-09-18T12:28:22.173602+00:00",
       "generated_at": "2026-09-18T10:53:58.271581+00:00",
       "generation_record_id": "6678566f2b754ee2bcce5f0447ca86d3"
     }
   },
   "production_gate": {
-    "KAITO_REFERENCE_APPROVED": false
+    "KAITO_REFERENCE_APPROVED": true
   },
   "notes": [
     "All reference slots are MISSING until approved line-art references are generated and reviewed.",

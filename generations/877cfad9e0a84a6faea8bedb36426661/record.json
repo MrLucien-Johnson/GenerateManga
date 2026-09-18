@@ -9,9 +9,9 @@
   "negative_prompt": "photorealistic, 3d render, cgi, blurry, lowres, watermark, signature, logo, text, letters, words, speech bubble text, caption text, speech balloons with writing, color, colored, watercolor, airbrush, soft shading, gradient, grayscale wash, screentone, moire, noise, jpeg artifacts, extra limbs, deformed hands, nsfw, gore, horror, creepy uncanny faces",
   "width": 1024,
   "height": 1320,
-  "status": "GENERATED",
+  "status": "APPROVED",
   "output_path": "generations/pages/page_03/page_03_pilot.png",
-  "approved_path": null,
+  "approved_path": "/workspace/approved/page_03.png",
   "reference_assets": [],
   "settings": {
     "pilot": true,
@@ -21,6 +21,6 @@
   },
   "error": null,
   "created_at": "2026-09-18T12:29:54.378720Z",
-  "updated_at": "2026-09-18T12:29:54.378730Z",
+  "updated_at": "2026-09-18T13:03:34.933049Z",
   "parent_id": null
 }

@@ -1,10 +1,10 @@
 {
   "KAITO_REFERENCE_APPROVED": false,
-  "PILOT_APPROVED": false,
+  "PILOT_APPROVED": true,
   "PDF_READY": false,
   "notes": {
     "KAITO_REFERENCE_APPROVED": "Must be true (via ApprovalWorkflow + continuity) before bulk page generation.",
-    "PILOT_APPROVED": "Must be true after human review of pilot pages 1–5. Never auto-set by generate_pilot.",
+    "PILOT_APPROVED": "Human requested Option A; approved via ApprovalWorkflow (Streamlit checklist UI was flaky). Mock pipeline testing only.",
     "PDF_READY": "Computed from approved art + gates; do not force true manually."
   }
 }

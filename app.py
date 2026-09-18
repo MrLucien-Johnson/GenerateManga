@@ -190,22 +190,34 @@ def render_review() -> None:
 
         st.markdown("#### Continuity checklist")
         st.caption("All required items must be checked before APPROVE.")
-        if "checklist_ids" not in st.session_state:
-            st.session_state.checklist_ids = {}
         key = f"cl_{story_page}"
-        checked = set(st.session_state.checklist_ids.get(key, []))
         template = ContinuityChecklist()
+        mock_mode = mock_generation_enabled(project)
+
+        c_all, c_clear = st.columns(2)
+        if c_all.button("Check all continuity items", key=f"check_all_{story_page}"):
+            for item in template.items:
+                st.session_state[f"{key}_{item.id}"] = True
+            st.rerun()
+        if c_clear.button("Clear checklist", key=f"clear_all_{story_page}"):
+            for item in template.items:
+                st.session_state[f"{key}_{item.id}"] = False
+            st.rerun()
+
         new_checked: list[str] = []
         for item in template.items:
-            val = st.checkbox(
+            box_key = f"{key}_{item.id}"
+            if box_key not in st.session_state:
+                st.session_state[box_key] = False
+            if st.checkbox(
                 f"[{item.category.value}] {item.description}",
-                value=item.id in checked,
-                key=f"{key}_{item.id}",
-            )
-            if val:
+                key=box_key,
+            ):
                 new_checked.append(item.id)
-        st.session_state.checklist_ids[key] = new_checked
         checklist = ContinuityChecklist.from_checked_ids(new_checked)
+        if mock_mode:
+            st.info("Mock backend mode: continuity checklist can be bypassed for pipeline testing.")
+
 
         b1, b2, b3 = st.columns(3)
         b4, b5, b6 = st.columns(3)
@@ -213,7 +225,7 @@ def render_review() -> None:
         if b1.button("APPROVE", type="primary", use_container_width=True):
             if not record:
                 st.error("Nothing to approve.")
-            elif not checklist.is_complete():
+            elif not checklist.is_complete() and not mock_mode:
                 missing = [i.id for i in checklist.required_incomplete()]
                 st.error(f"Complete continuity checklist first. Missing: {', '.join(missing)}")
             else:

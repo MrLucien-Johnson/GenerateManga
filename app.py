@@ -159,7 +159,7 @@ def render_review() -> None:
     with left:
         img_path = _resolve_image_path(record.output_path if record else None)
         if img_path:
-            st.image(str(img_path), caption=f"Candidate — {img_path.name}", use_container_width=True)
+            st.image(str(img_path), caption=f"Candidate — {img_path.name}", use_column_width="always")
             if record and (record.settings or {}).get("non_production"):
                 st.warning(NON_PRODUCTION_LABEL)
         else:
@@ -168,7 +168,7 @@ def render_review() -> None:
         prev = _previous_approved_path(story_page)
         if prev:
             with st.expander("Previous approved page"):
-                st.image(str(prev), use_container_width=True)
+                st.image(str(prev), use_column_width="always")
 
     with right:
         st.markdown("#### Story context")
@@ -273,7 +273,7 @@ def render_review() -> None:
                 with cols[idx % len(cols)]:
                     st.caption(f"{rec.id[:8]}… seed={rec.seed} {rec.status.value}")
                     if path:
-                        st.image(str(path), use_container_width=True)
+                        st.image(str(path), use_column_width="always")
 
 
 def _run_regenerate(story_page: int, parent, extra_prompt: str = "", replace_prompt: bool = False) -> None:
@@ -504,7 +504,7 @@ def render_continuity() -> None:
             if not img or not img.is_file():
                 continue
             st.subheader(f"Slot: {name} — {slot.get('status')}")
-            st.image(str(img), caption=filename, use_container_width=True)
+            st.image(str(img), caption=filename, use_column_width="always")
             c1, c2, c3 = st.columns(3)
             if c1.button(f"Approve {name}", key=f"approve_slot_{name}"):
                 mgr.set_reference_slot_status("kaito", name, ReferenceStatus.APPROVED)

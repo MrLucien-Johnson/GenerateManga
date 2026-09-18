@@ -49,6 +49,7 @@ logs/*.log
 logs/*.log.*
 reports/*.json
 !reports/.gitkeep
+!reports/model-licensing.json
 
 # Large generation outputs — keep metadata dirs, ignore heavy binaries by default
 generations/**/*.png

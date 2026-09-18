@@ -1,0 +1,25 @@
+{
+  "project": "Echo of the Inkwell",
+  "version": "0.1.0",
+  "reviewed_by": null,
+  "reviewed_at": null,
+  "notes": [
+    "Owner must review every model entry before production use.",
+    "Do not ship KDP interiors generated with unlicensed or unclear-license models.",
+    "Mock backend (mock-lineart) is NON-PRODUCTION TEST only."
+  ],
+  "models": [
+    {
+      "id": "placeholder-review-required",
+      "name": null,
+      "provider": null,
+      "license": null,
+      "license_url": null,
+      "commercial_use_allowed": null,
+      "source_url": null,
+      "used_for": [],
+      "status": "OWNER_MUST_REVIEW",
+      "notes": "Replace this placeholder with real model provenance before production export."
+    }
+  ]
+}

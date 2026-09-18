@@ -23,5 +23,9 @@
   "error": null,
   "created_at": "2026-09-18T10:53:58.248851Z",
   "updated_at": "2026-09-18T10:53:58.248860Z",
-  "parent_id": null
+  "parent_id": null,
+  "source_type": "MOCK",
+  "production_eligible": false,
+  "model_revision": null,
+  "license_notes": null
 }

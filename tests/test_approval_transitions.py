@@ -5,24 +5,27 @@ from __future__ import annotations
 from pathlib import Path
 
 import pytest
+from PIL import Image
 
 from echo.core.errors import ValidationError
-from echo.core.schemas import ArtStatus
+from echo.core.schemas import ArtStatus, SourceType
 from echo.generation.metadata import create_record
-from echo.generation.mock_backend import MockGenerationBackend
 from echo.review.approval import ApprovalWorkflow
 
 
 def _generate_record(tmp_project: Path, name: str = "art.png") -> str:
-    backend = MockGenerationBackend(root=tmp_project)
+    """Create a production-eligible test record (not MockGenerationBackend)."""
     out = tmp_project / "generations" / name
-    result = backend.generate(prompt="scene", width=64, height=64, seed=3, output_path=out)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    Image.new("RGB", (64, 64), "white").save(out, format="PNG")
     record = create_record(
         page_id="p1",
-        backend="mock",
-        seed=result.seed,
-        output_path=result.output_path,
+        backend="test",
+        seed=3,
+        output_path=out,
         status=ArtStatus.GENERATED,
+        source_type=SourceType.REAL,
+        production_eligible=True,
         root=tmp_project,
     )
     return record.id

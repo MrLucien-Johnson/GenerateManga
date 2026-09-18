@@ -124,10 +124,13 @@ class LocalDiffusionBackend(GenerationBackend):
             result.backend = self.name
             result.metadata["mock"] = True
             result.metadata["label"] = "NON-PRODUCTION TEST"
+            result.metadata["source_type"] = "MOCK"
+            result.metadata["production_eligible"] = False
             return result
 
         # Real path: document-only stub that fails clearly until pipeline is wired
         # with a user-provided local model (no downloads).
+        # When real generation is enabled, callers must set source_type=REAL.
         raise BackendUnavailable(
             self.name,
             (

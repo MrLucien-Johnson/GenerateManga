@@ -126,5 +126,7 @@ class MockGenerationBackend(GenerationBackend):
                 "negative_chars": len(negative_prompt),
                 "references": [str(r) for r in (reference_images or [])],
                 "settings": settings or {},
+                "source_type": "MOCK",
+                "production_eligible": False,
             },
         )

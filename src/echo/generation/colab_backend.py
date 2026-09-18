@@ -109,6 +109,9 @@ class ColabBackend(GenerationBackend):
         meta: dict[str, Any] = {}
         if meta_path.is_file():
             meta = json.loads(meta_path.read_text(encoding="utf-8"))
+        meta = dict(meta)
+        meta.setdefault("source_type", "REAL")
+        meta.setdefault("production_eligible", False)
         return GenerationResult(
             success=True,
             output_path=dest,

@@ -107,7 +107,25 @@ def tmp_project(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> Path:
                 "reference_slots": {
                     "front": {"filename": "kaito_front.png", "status": "MISSING"}
                 },
+                "production_gate": {"KAITO_REFERENCE_APPROVED": False},
+                "master_design": {
+                    "selected_id": None,
+                    "KAITO_MASTER_DESIGN_SELECTED": False,
+                    "candidates_dir": "characters/kaito/design-candidates",
+                },
                 "notes": ["References not yet approved."],
+            }
+        ),
+        encoding="utf-8",
+    )
+    (tmp_path / "characters" / "kaito" / "design-candidates").mkdir(parents=True, exist_ok=True)
+    (tmp_path / "config" / "design.json").write_text(
+        json.dumps(
+            {
+                "master_design_workflow": True,
+                "auto_select": False,
+                "refuse_mock_for_selection": True,
+                "candidate_count": 4,
             }
         ),
         encoding="utf-8",

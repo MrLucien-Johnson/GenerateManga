@@ -1,7 +1,6 @@
-# Pilot approved (mock pipeline testing)
+# Mock pilot approval — SUPERSEDED (Phase 12)
 
-Human requested Option A (Streamlit review). Streamlit checklist widgets were unreliable under automation, so pages 1–5 were approved through the same `ApprovalWorkflow` the Review **APPROVE** button uses, then `PILOT_APPROVED` was opened with `--confirm-pilot`.
+Prior mock approval of pages 1–5 and `PILOT_APPROVED=true` has been **revoked**.
 
-- Approved files: `approved/page_01.png` … `approved/page_05.png`
-- Still geometric mock placeholders — **not publishable manga**
-- Bulk generation is gate-permitted; still uses mock backend until reconfigured
+Mock pilot PNGs live under `rejected/mock-pilot-pages/` and are not production-eligible.
+See `reports/kaito-real-design-review.md` (TEMPLATE / BLOCKED) and `reports/mock-gate-opened.md`.

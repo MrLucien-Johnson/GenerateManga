@@ -29,9 +29,13 @@ def test_kaito_references_missing_by_default(tmp_project: Path) -> None:
 
 
 def test_approve_missing_output_raises(tmp_project: Path) -> None:
+    from echo.core.schemas import SourceType
+
     record = create_record(
         page_id="p1",
-        backend="mock",
+        backend="test",
+        source_type=SourceType.REAL,
+        production_eligible=True,
         output_path=str(tmp_project / "generations" / "gone.png"),
         status=ArtStatus.GENERATED,
         root=tmp_project,

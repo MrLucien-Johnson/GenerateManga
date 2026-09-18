@@ -20,8 +20,28 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from _cli_common import die, handle_cli_errors, load_character_continuity, root  # noqa: E402
 
 from echo.characters.manager import CharacterManager  # noqa: E402
-from echo.continuity.gates import GateName, set_gate  # noqa: E402
+from echo.continuity.gates import (  # noqa: E402
+    GateName,
+    assert_no_mock_for_kaito_gate,
+    set_gate,
+)
+from echo.core.errors import EchoError  # noqa: E402
 from echo.core.schemas import ReferenceStatus  # noqa: E402
+
+
+def _clear_kaito_gate_messages(*, project: Path) -> None:
+    """Clear stale gate-open notes when an open-gate attempt is refused."""
+    cont_path = project / "characters" / "kaito" / "continuity.json"
+    if cont_path.is_file():
+        cont = json.loads(cont_path.read_text(encoding="utf-8"))
+        pg = cont.setdefault("production_gate", {})
+        pg["KAITO_REFERENCE_APPROVED"] = False
+        cont["production_gate"] = pg
+        cont_path.write_text(json.dumps(cont, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    try:
+        set_gate(GateName.KAITO_REFERENCE_APPROVED, False, root=project, note=None)
+    except Exception:
+        pass
 
 
 @handle_cli_errors
@@ -73,18 +93,30 @@ def main() -> None:
                 "Refusing to open gate without --confirm-design.",
                 hint="Review all references, then re-run with --confirm-design.",
             )
+        try:
+            assert_no_mock_for_kaito_gate(root=project)
+        except EchoError as exc:
+            _clear_kaito_gate_messages(project=project)
+            die(exc.message, hint=exc.hint)
+
         overall = mgr.overall_reference_status(slug)
         if overall not in (ReferenceStatus.APPROVED, ReferenceStatus.LOCKED):
+            _clear_kaito_gate_messages(project=project)
             die(
                 f"Cannot open gate — aggregate status is {overall.value}.",
                 hint="Approve or lock every reference slot first.",
             )
-        set_gate(
-            GateName.KAITO_REFERENCE_APPROVED,
-            True,
-            root=project,
-            note=f"Human CLI approval at {datetime.now(timezone.utc).isoformat()}",
-        )
+        try:
+            set_gate(
+                GateName.KAITO_REFERENCE_APPROVED,
+                True,
+                root=project,
+                note=f"Human CLI approval at {datetime.now(timezone.utc).isoformat()}",
+            )
+        except EchoError as exc:
+            _clear_kaito_gate_messages(project=project)
+            die(exc.message, hint=exc.hint)
+
         cont = load_character_continuity(slug, project=project)
         cont.setdefault("production_gate", {})["KAITO_REFERENCE_APPROVED"] = True
         path = project / "characters" / slug / "continuity.json"

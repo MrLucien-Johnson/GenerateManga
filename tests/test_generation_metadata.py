@@ -13,6 +13,7 @@ def test_create_and_reload_record(tmp_project: Path) -> None:
     backend = MockGenerationBackend(root=tmp_project)
     out = tmp_project / "generations" / "meta.png"
     result = backend.generate(prompt="meta", width=64, height=64, seed=11, output_path=out)
+    assert result.metadata.get("source_type") == "MOCK"
     record = create_record(
         page_id="p1",
         backend="mock",
@@ -31,6 +32,9 @@ def test_create_and_reload_record(tmp_project: Path) -> None:
     assert loaded.seed == 11
     assert loaded.positive_prompt == "meta"
     assert loaded.settings["test"] is True
+    assert loaded.source_type.value == "MOCK"
+    assert loaded.production_eligible is False
+    assert loaded.is_mock()
     assert (tmp_project / "generations" / record.id / "record.json").is_file()
 
 

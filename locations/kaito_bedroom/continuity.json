@@ -1,0 +1,38 @@
+{
+  "location_id": "kaito_bedroom",
+  "version": "0.1.0",
+  "reference_slots": {
+    "wide-establishing": {
+      "filename": "kaito_bedroom_wide.png",
+      "status": "MISSING",
+      "path": null,
+      "approved_at": null
+    },
+    "desk-detail": {
+      "filename": "kaito_bedroom_desk.png",
+      "status": "MISSING",
+      "path": null,
+      "approved_at": null
+    },
+    "door-view": {
+      "filename": "kaito_bedroom_door_view.png",
+      "status": "MISSING",
+      "path": null,
+      "approved_at": null
+    },
+    "night-lamp": {
+      "filename": "kaito_bedroom_night.png",
+      "status": "MISSING",
+      "path": null,
+      "approved_at": null
+    }
+  },
+  "production_gate": {
+    "KAITO_BEDROOM_REFERENCE_APPROVED": false
+  },
+  "notes": [
+    "No reference images exist yet; all slots MISSING.",
+    "Do not invent image files on disk.",
+    "Future assets intended under locations/kaito_bedroom/references/."
+  ]
+}

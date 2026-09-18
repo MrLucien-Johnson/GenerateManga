@@ -1,0 +1,39 @@
+{
+  "location_id": "neighbourhood_street",
+  "name": "Neighbourhood Street",
+  "layout": "Quiet residential streets connecting home, school, and the side alley that leads to the mysterious shop. Mix of two-story homes, utility poles, modest shops, and narrow turnoffs. A recurring main street plus one 'never-noticed' side street.",
+  "key_landmarks": [
+    "Main residential road with sidewalks",
+    "Utility poles and overhead lines",
+    "Art festival poster wall / board early in story",
+    "Narrow side street canyon leading to the shop",
+    "Alley used for Unfinished sighting and return"
+  ],
+  "furniture_objects": [
+    "Bicycles parked near walls",
+    "Vending machine (optional recurring background)",
+    "Planters / potted plants at house fronts",
+    "Trash bins / recycling crates",
+    "Street signs and mailbox posts"
+  ],
+  "visual_identifiers": [
+    "Lived-in residential calm; not a mega-city skyline",
+    "Soft daylight for ordinary travel; evening streetlights for late walk",
+    "Ink scuff marks appear only after Unfinished escapes, then fade after climax",
+    "Side street feels slightly 'between pages'—quieter, narrower, odd angle of light—but still real"
+  ],
+  "camera_possibilities": [
+    "Tracking walk shots behind or beside Kaito",
+    "Long perspective toward shop sign",
+    "Wide silhouette reveal for midpoint Unfinished",
+    "Close on ink marks on fence/wall",
+    "Night two-shot under streetlights for resolution walk"
+  ],
+  "continuity_constraints": [
+    "Route logic: bedroom/home area ↔ streets ↔ school; side street ↔ mysterious shop",
+    "Shop side street should remain findable after first discovery (not randomly teleporting)",
+    "Ink marks continuity: none before page ~29; present through chase; fade by page 43",
+    "Keep architecture consistent enough that readers recognize return locations",
+    "Do not densify into downtown skyscrapers mid-volume"
+  ]
+}

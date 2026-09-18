@@ -1,0 +1,63 @@
+{
+  "character_id": "kaito",
+  "version": "0.1.0",
+  "reference_slots": {
+    "front": {
+      "filename": "kaito_front.png",
+      "status": "MISSING",
+      "path": null,
+      "approved_at": null
+    },
+    "three-quarter": {
+      "filename": "kaito_three_quarter.png",
+      "status": "MISSING",
+      "path": null,
+      "approved_at": null
+    },
+    "side": {
+      "filename": "kaito_side.png",
+      "status": "MISSING",
+      "path": null,
+      "approved_at": null
+    },
+    "back": {
+      "filename": "kaito_back.png",
+      "status": "MISSING",
+      "path": null,
+      "approved_at": null
+    },
+    "full-body": {
+      "filename": "kaito_full_body.png",
+      "status": "MISSING",
+      "path": null,
+      "approved_at": null
+    },
+    "expressions": {
+      "filename": "kaito_expressions.png",
+      "status": "MISSING",
+      "path": null,
+      "approved_at": null
+    },
+    "hands": {
+      "filename": "kaito_hands.png",
+      "status": "MISSING",
+      "path": null,
+      "approved_at": null
+    },
+    "jacket-detail": {
+      "filename": "kaito_jacket_detail.png",
+      "status": "MISSING",
+      "path": null,
+      "approved_at": null
+    }
+  },
+  "production_gate": {
+    "KAITO_REFERENCE_APPROVED": false
+  },
+  "notes": [
+    "All reference slots are MISSING until approved line-art references are generated and reviewed.",
+    "Do not invent or claim image files exist on disk.",
+    "Story page art should not proceed past planning for final production until KAITO_REFERENCE_APPROVED is true.",
+    "Filenames listed are intended targets for future assets under characters/kaito/references/."
+  ]
+}

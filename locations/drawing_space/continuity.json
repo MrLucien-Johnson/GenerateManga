@@ -1,0 +1,38 @@
+{
+  "location_id": "drawing_space",
+  "version": "0.1.0",
+  "reference_slots": {
+    "playful-hills": {
+      "filename": "drawing_space_playful_hills.png",
+      "status": "MISSING",
+      "path": null,
+      "approved_at": null
+    },
+    "ink-thinning": {
+      "filename": "drawing_space_ink_thinning.png",
+      "status": "MISSING",
+      "path": null,
+      "approved_at": null
+    },
+    "storm-scribble": {
+      "filename": "drawing_space_storm.png",
+      "status": "MISSING",
+      "path": null,
+      "approved_at": null
+    },
+    "cleared-sky": {
+      "filename": "drawing_space_cleared.png",
+      "status": "MISSING",
+      "path": null,
+      "approved_at": null
+    }
+  },
+  "production_gate": {
+    "DRAWING_SPACE_REFERENCE_APPROVED": false
+  },
+  "notes": [
+    "All drawing-space reference slots are MISSING.",
+    "Do not invent fake image files.",
+    "Future assets intended under locations/drawing_space/references/."
+  ]
+}

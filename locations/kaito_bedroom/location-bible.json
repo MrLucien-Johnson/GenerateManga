@@ -1,0 +1,41 @@
+{
+  "location_id": "kaito_bedroom",
+  "name": "Kaito's Bedroom",
+  "layout": "Small rectangular teen bedroom. Door on one short wall; window on the opposite wall above a compact desk. Bed along the long wall; shelving and a low dresser opposite the bed. Clear floor path from door to desk for staging entries and exits.",
+  "key_landmarks": [
+    "Desk under the window (primary story stage)",
+    "Window with simple curtains / visible neighbourhood suggestion outside",
+    "Bed with plain bedding",
+    "Door to hallway",
+    "Wall shelf or corkboard with sketches and school notices"
+  ],
+  "furniture_objects": [
+    "Desk and chair",
+    "Desk lamp",
+    "Bed",
+    "Dresser / wardrobe",
+    "School bag hook or floor drop-zone",
+    "Sketchbooks and pencil cup on desk",
+    "Occasional Inkwell placement on desk (story-dependent)"
+  ],
+  "visual_identifiers": [
+    "Lived-in but not chaotic: paper stacks, a few posters, unfinished sketches",
+    "Warm ordinary home lighting; night scenes use lamp + window moonlight",
+    "Jacket often on chair back when not worn",
+    "Clear desk surface when ritual / Inkwell scenes require focus"
+  ],
+  "camera_possibilities": [
+    "Wide from doorway establishing whole room",
+    "Over-shoulder at desk toward window",
+    "Top-down on sketchbook and Inkwell",
+    "Low angle from floor for Sumi / small Echo moments",
+    "Side profile of Kaito at desk for quiet thinking beats"
+  ],
+  "continuity_constraints": [
+    "Window and desk relationship must stay consistent (desk under window)",
+    "Do not relocate the door between pages without reason",
+    "Bed side should remain the same across the volume",
+    "When Sumi rests on the page, sketchbook position should match prior panel logic",
+    "Night vs day lighting must match caption/time continuity"
+  ]
+}

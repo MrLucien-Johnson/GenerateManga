@@ -1,0 +1,122 @@
+{
+  "title": "Echo of the Inkwell",
+  "logline": "When shy 14-year-old Kaito discovers that drawings made with a mysterious Inkwell can step into reality, he must learn that every line he draws carries responsibility—before an unfinished fear he sketched begins rewriting his world.",
+  "target_audience": {
+    "primary": "Youth ages 9–14",
+    "secondary": "Families and coloring-book readers who enjoy gentle adventure manga",
+    "format_fit": "Youth manga + coloring book hybrid; clear line art, low panel density, readable emotions"
+  },
+  "themes": [
+    "creativity",
+    "responsibility",
+    "courage",
+    "friendship",
+    "consequences",
+    "imagination",
+    "self-belief",
+    "problem solving",
+    "creator-creation relationship"
+  ],
+  "tone": "Warm, wonder-filled, and lightly suspenseful. Hopeful without being sugarcoated; mistakes have weight, but kindness and courage can repair what fear breaks. Suitable for young readers—no gore, cruelty, or cynicism.",
+  "genre": [
+    "youth fantasy",
+    "coming-of-age",
+    "magical realism / soft fantasy",
+    "friendship adventure"
+  ],
+  "protagonist": {
+    "name": "Kaito",
+    "age": 14,
+    "character_id": "kaito",
+    "summary": "A quiet, observant middle-schooler who doodles constantly but doubts his drawings matter. Curious, kind, and conflict-avoidant until the Inkwell forces him to choose between hiding and taking responsibility for what he creates.",
+    "want": "To make something that feels real and important—something that proves his imagination counts.",
+    "need": "To trust himself enough to finish what he starts, and to accept that creation without care can hurt others.",
+    "flaw": "Avoids finishing difficult drawings (and hard conversations); freezes when others might judge him.",
+    "strength": "Empathy, careful observation, and a gift for finding the right line when it matters."
+  },
+  "supporting_characters": [
+    {
+      "name": "Ren",
+      "role": "Best friend / classmate",
+      "summary": "Outspoken, loyal, and a little reckless. Notices when Kaito retreats into his sketchbook. Becomes the first person Kaito trusts with the Inkwell's secret—and the friend whose safety forces Kaito to act."
+    },
+    {
+      "name": "Mira",
+      "role": "Shopkeeper of the mysterious stationery shop",
+      "summary": "Calm, wry guardian of old tools of making. She does not hand out free power; she offers rules, warnings, and the space to choose. Speaks in questions more than lectures."
+    },
+    {
+      "name": "Sumi",
+      "role": "First intentional creation (ink-fox companion)",
+      "summary": "A small fox sketched with care and finished with clear intent. Loyal, playful, and limited by the drawing that birthed it. Teaches Kaito that creations have needs and boundaries."
+    },
+    {
+      "name": "The Unfinished",
+      "role": "Antagonistic force / unfinished fear-sketch",
+      "summary": "A half-drawn shadow-beast born from Kaito's panic and abandoned lines. Not purely evil—hungry for completion, form, and attention. Grows unstable the longer it remains unfinished."
+    }
+  ],
+  "antagonist_conflict_structure": {
+    "external": "The Unfinished escapes the page and begins echoing Kaito's fear into the neighbourhood—smearing ink-reality, frightening people, and threatening Ren.",
+    "internal": "Kaito's habit of leaving hard things unfinished and his fear of being seen as 'not good enough' fuel the Unfinished's power.",
+    "relational": "Trust with Ren is strained when the secret causes danger; Mira refuses to simply fix it for him.",
+    "thematic": "Creator vs. creation: will Kaito abandon, destroy, or take responsibility by finishing and transforming what he started?",
+    "resolution_principle": "Victory comes through understanding, completion, and care—not unlimited power or erasure without cost."
+  },
+  "world_rules": [
+    "The story is set in a contemporary Japanese neighbourhood with ordinary schools, streets, and bedrooms; magic is rare and local, not publicly known.",
+    "Only tools tied to the Inkwell's lineage can produce crossing effects; ordinary pens and pencils do not.",
+    "Drawn worlds and echoed objects coexist briefly with reality but leave traces (ink smells, faint line marks, tiredness in the creator).",
+    "Adults notice oddities but rationalize them unless confronted with undeniable proof.",
+    "Imagination is not free: clarity of intent, emotional honesty, and craft quality shape what appears."
+  ],
+  "inkwell_rules": [
+    "The Inkwell must be opened with deliberate intent; idle doodling with residual ink may flicker but will not fully cross.",
+    "Ink from the well must touch the page (or drawing surface) for a creation to become an Echo.",
+    "A drawing must be finished—closed silhouette, clear purpose, and a final stroke of resolve—to stabilize as an Echo.",
+    "Unfinished drawings can still leak into reality as unstable Echoes if strong emotion saturates the ink.",
+    "Each Echo remains bound to its originating drawing: damage, erase, or complete the drawing and the Echo changes accordingly.",
+    "The Inkwell holds a finite well of ink for any given period; overuse thins the ink and weakens control.",
+    "The shop and Mira act as a soft gate: the Inkwell finds those who need its lesson, but it can be refused or returned.",
+    "Drawn spaces (pocket worlds) can be entered only while the Inkwell is open nearby and the creator remains focused."
+  ],
+  "ability_limitations": [
+    "No unlimited power: Kaito cannot conjure gods, rewrite history, or create endless armies.",
+    "Skill ceiling: shaky lines, vague designs, and copied ideas without understanding produce weak or distorted Echoes.",
+    "Emotional clarity required: panic, spite, and denial produce unstable forms; calm courage produces durable ones.",
+    "Physical cost: prolonged Echoing causes hand tremor, headaches, and creative burnout.",
+    "Ink economy: larger or more complex Echoes consume more ink and demand more recovery time.",
+    "Range limit: Echoes weaken the farther they travel from their drawing or the open Inkwell.",
+    "Cannot freely erase others' free will; Echoes can frighten or obstruct but not permanently control people.",
+    "Cannot permanently replace real objects without leaving ink-residue that fades unless maintained."
+  ],
+  "consequences": [
+    "Abandoned fear-drawings can become The Unfinished and escalate if ignored.",
+    "Hurting an Echo hurts the emotional bond of its creator; careless destruction leaves guilt and lingering marks.",
+    "Public exposure risks panic and loss of the Inkwell; secrecy has a cost when friends are endangered.",
+    "Using the Inkwell to show off or escape responsibility amplifies instability.",
+    "Finishing a dangerous Echo correctly can transform it rather than destroy it—but requires facing the emotion that made it.",
+    "Returning or sealing the Inkwell ends active Echoes, but lessons and friendships remain."
+  ],
+  "character_arc": {
+    "start": "Kaito hides in unfinished sketches, believing unfinished work cannot fail or be judged.",
+    "mid": "He tastes wonder through Sumi, then panics when a fear-sketch escapes; he tries to hide and fix it alone.",
+    "end": "He finishes the hard drawing with Ren's help—transforming The Unfinished into something understood—and accepts that being a creator means owning both wonder and consequence.",
+    "arc_statement": "From avoiding completion to choosing responsible creation."
+  },
+  "narrative_structure": {
+    "setup": "Kaito's ordinary school life, sketchbook habit, and friendship with Ren. A restless creative hunger leads him to a narrow shop he has never noticed before.",
+    "escalation": "Mira warns him; he takes the Inkwell home. His first careful creation, Sumi, crosses into reality. Wonder blooms—then a hurried, fear-driven sketch begins to bleed.",
+    "midpoint": "The Unfinished fully escapes during a neighbourhood moment; Ren sees the truth. Friendship and secrecy collide as the Echo spreads ink-marks through familiar streets.",
+    "crisis": "Kaito's attempt to erase The Unfinished without facing it fails. Ren is endangered; Mira refuses to finish the drawing for him. Ink runs low; Kaito feels powerless.",
+    "climax": "In the drawing space / Echo world, Kaito confronts The Unfinished, completes the lines with courage and care, and redefines the creature as a guardian-shadow rather than a monster.",
+    "resolution": "Balance returns. Sumi remains as a quieter Echo or returns to the page with love. Kaito keeps the lesson—and a tempered Inkwell connection—ready for future stories without unlimited power."
+  },
+  "sequel_hooks": [
+    "Other old tools in Mira's shop begin to stir (pencil of memory, eraser of forgotten promises).",
+    "A second Inkwell-bearer appears in another town with different rules and reckless intent.",
+    "Sumi's page shows new marks Kaito did not draw.",
+    "School art festival becomes a magnet for residual Echoes.",
+    "Mira hints the Inkwell was once misused—and someone is looking for it again."
+  ]
+}

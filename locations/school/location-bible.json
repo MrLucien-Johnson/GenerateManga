@@ -1,0 +1,40 @@
+{
+  "location_id": "school",
+  "name": "School",
+  "layout": "Contemporary middle-school campus used as a multi-zone location: exterior gate/fence, hallway, and classroom interior. Story treats these as connected wings of one school rather than separate campuses.",
+  "key_landmarks": [
+    "School gate / entrance",
+    "Fence line (crisis action zone near after-hours)",
+    "Classroom with rows of desks and a board",
+    "Hallway with shoe lockers or classroom doors",
+    "Festival display board / art wall (late chapters)"
+  ],
+  "furniture_objects": [
+    "Student desks and chairs",
+    "Teacher's desk / podium",
+    "Blackboard or whiteboard",
+    "Bulletin board / announcement board",
+    "Classroom windows",
+    "Festival art display stands or wall clips"
+  ],
+  "visual_identifiers": [
+    "Clean institutional architecture with simple vertical window grids",
+    "Readable peer silhouettes in backgrounds without crowding",
+    "School clocks, chalk dust, and notice papers as texture",
+    "Daytime default; after-hours fence scene uses emptier grounds"
+  ],
+  "camera_possibilities": [
+    "Gate establishing two-shot for Ren/Kaito arrivals",
+    "Over-shoulder classroom doodle shots",
+    "Hallway walking conversation",
+    "Fence-line action wide for Unfinished crisis",
+    "Festival wall medium shots for praise beat"
+  ],
+  "continuity_constraints": [
+    "Keep uniform architecture language across classroom/hallway/gate",
+    "Ren and Kaito seating relationship can stay consistent if shown repeatedly",
+    "Festival board appears only after it is introduced in story timing",
+    "After-hours fence scene should feel like the same school exterior family",
+    "Avoid turning school into fantasy architecture except when Echo effects intrude"
+  ]
+}

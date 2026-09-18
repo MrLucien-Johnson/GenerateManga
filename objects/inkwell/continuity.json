@@ -1,0 +1,63 @@
+{
+  "object_id": "inkwell",
+  "version": "0.1.0",
+  "reference_slots": {
+    "front": {
+      "filename": "inkwell_front.png",
+      "status": "MISSING",
+      "path": null,
+      "approved_at": null
+    },
+    "three-quarter": {
+      "filename": "inkwell_three_quarter.png",
+      "status": "MISSING",
+      "path": null,
+      "approved_at": null
+    },
+    "side": {
+      "filename": "inkwell_side.png",
+      "status": "MISSING",
+      "path": null,
+      "approved_at": null
+    },
+    "open-lid": {
+      "filename": "inkwell_open_lid.png",
+      "status": "MISSING",
+      "path": null,
+      "approved_at": null
+    },
+    "detail-markings": {
+      "filename": "inkwell_detail_markings.png",
+      "status": "MISSING",
+      "path": null,
+      "approved_at": null
+    },
+    "active-effect": {
+      "filename": "inkwell_active_effect.png",
+      "status": "MISSING",
+      "path": null,
+      "approved_at": null
+    },
+    "low-ink": {
+      "filename": "inkwell_low_ink.png",
+      "status": "MISSING",
+      "path": null,
+      "approved_at": null
+    },
+    "wrapped": {
+      "filename": "inkwell_wrapped.png",
+      "status": "MISSING",
+      "path": null,
+      "approved_at": null
+    }
+  },
+  "production_gate": {
+    "INKWELL_REFERENCE_APPROVED": false
+  },
+  "notes": [
+    "All Inkwell reference slots are MISSING until approved assets exist.",
+    "Do not invent fake image files or mark slots APPROVED without review.",
+    "Intended future path root: objects/inkwell/references/",
+    "Story art may plan around the object bible, but final production should wait on INKWELL_REFERENCE_APPROVED."
+  ]
+}
